@@ -1,11 +1,16 @@
 package com.example.filmslibrary.FilmsFragment
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.filmslibrary.model.AppState
 import com.example.filmslibrary.model.dataSource.DataSource
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.model.repository.FilmsRepositoryInterface
 import kotlinx.coroutines.Dispatchers
+import java.lang.Thread.sleep
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.lang.Thread.sleep
 
 class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<DataSource<List<FilmObject>>>) :
@@ -19,11 +24,10 @@ class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<D
         myLiveData.value = AppState.Loading
 
 
-
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.async(Dispatchers.IO) {
             sleep(1000)
-            myLiveData.postValue(AppState.Success(repositoryInterface.getListOfFilmsFromInternet()))
+            myLiveData.postValue(AppState.Success(repositoryInterface.getListOfFilmsFromInternetAsync(apiKey:String, )))
         }
     }
-
 }
+
