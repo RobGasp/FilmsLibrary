@@ -1,20 +1,8 @@
-package com.example.filmslibrary.repository
+package com.example.filmslibrary.model.repository
 
-import android.os.Build
 import android.os.Parcelable
-import androidx.annotation.RequiresApi
-import com.example.filmslibrary.MainActivity
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.lang.Exception
-import java.lang.StringBuilder
-import java.net.HttpURLConnection
-import java.net.URL
-import java.util.stream.Collectors
-import javax.net.ssl.HttpsURLConnection
 
 @Parcelize
 data class FilmObject(

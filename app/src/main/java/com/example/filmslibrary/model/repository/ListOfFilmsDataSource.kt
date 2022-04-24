@@ -1,4 +1,4 @@
-package com.example.filmslibrary.repository
+package com.example.filmslibrary.model.repository
 
 import android.os.Build
 import androidx.annotation.RequiresApi
