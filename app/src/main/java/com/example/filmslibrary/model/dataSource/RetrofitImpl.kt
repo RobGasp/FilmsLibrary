@@ -14,6 +14,9 @@ import java.net.Proxy
 
 class RetrofitImpl : DataSource<List<FilmObject>> {
 
+    private val proxyHost = "5.189.155.147"
+    private val proxyPort = 1080
+
     private val proxy: Proxy = Proxy(Proxy.Type.HTTP, InetSocketAddress(proxyHost, proxyPort))
 
     override suspend fun getDataAsync(
