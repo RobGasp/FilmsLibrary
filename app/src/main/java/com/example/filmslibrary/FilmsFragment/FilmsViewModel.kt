@@ -17,7 +17,7 @@ class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<D
 
     suspend fun getFilms(apiKey:String, language:String) {
         myLiveData.value = AppState.Loading(null)
-  
+
         viewModelScope.async(Dispatchers.IO) {
             myLiveData.postValue(AppState.Success(repositoryInterface.getListOfFilmsFromInternetAsync(apiKey,language)))
         }.await()
