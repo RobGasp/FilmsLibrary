@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FilmsLibrary</string>
+    <string name="actual_text">Актуальное</string>
+    <string name="favourite_text">Избранное</string>
+    <string name="cinemas_text">Кинотеатры</string>
+    <string name="favourite_fragment_is_chosen_text">Выбран фрагмент Избранное</string>
+    <string name="cinemas_fragment_is_chosen_text">Выбран фрагмент Кинотеатры</string>
 </resources>

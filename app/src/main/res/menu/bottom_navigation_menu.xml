@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_view_actual"
+        android:icon="@drawable/movie_40px"
+        android:title="@string/actual_text" />
+    <item
+        android:id="@+id/bottom_view_favourite"
+        android:icon="@drawable/favorite_40px"
+        android:title="@string/favourite_text" />
+    <item
+        android:id="@+id/bottom_view_cinemas"
+        android:icon="@drawable/theaters_48px"
+        android:title="@string/cinemas_text" />
+</menu>
