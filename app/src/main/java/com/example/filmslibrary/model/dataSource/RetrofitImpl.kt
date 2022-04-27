@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.net.InetSocketAddress
 import java.net.Proxy
 
-class RetrofitImpl : DataSource<List<FilmObject>> {
+class RetrofitImpl : InetDataSource<List<FilmObject>> {
 
     private val proxyHost = "5.189.155.147"
     private val proxyPort = 1080
