@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="films">
+        <item>Фильм 1</item>
+        <item>Фильм 2</item>
+        <item>Фильм 3</item>
+        <item>Фильм 4</item>
+        <item>Фильм 5</item>
+        <item>Фильм 6</item>
+        <item>Фильм 7</item>
+        <item>Фильм 8</item>
+        <item>Фильм 9</item>
+    </string-array>
+</resources>

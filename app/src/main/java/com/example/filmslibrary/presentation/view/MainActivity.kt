@@ -2,6 +2,7 @@ package com.example.filmslibrary.presentation.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.filmslibrary.R
 import com.example.filmslibrary.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
