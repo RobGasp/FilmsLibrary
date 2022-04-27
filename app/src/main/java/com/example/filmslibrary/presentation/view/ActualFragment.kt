@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.filmslibrary.databinding.FragmentActualBinding
+import com.example.filmslibrary.presentation.view.adapter.ActualFragmentAdapter
 
 class ActualFragment : Fragment() {
 

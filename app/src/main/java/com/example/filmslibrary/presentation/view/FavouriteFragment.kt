@@ -1,4 +1,4 @@
-package com.example.filmslibrary
+package com.example.filmslibrary.presentation.view
 
 import android.os.Bundle
 import android.view.LayoutInflater

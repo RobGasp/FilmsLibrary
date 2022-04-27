@@ -2,7 +2,7 @@ package com.example.filmslibrary.model.repository
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.example.filmslibrary.MainActivity
+import com.example.filmslibrary.presentation.view.MainActivity
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
