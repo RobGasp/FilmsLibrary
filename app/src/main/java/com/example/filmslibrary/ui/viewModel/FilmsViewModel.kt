@@ -1,14 +1,14 @@
-package com.example.filmslibrary.FilmsFragment
+package com.example.filmslibrary.ui.viewModel
 
 import androidx.lifecycle.*
-import com.example.filmslibrary.model.AppState
-import com.example.filmslibrary.model.dataSource.DataSource
+import com.example.filmslibrary.model.data.AppState
+import com.example.filmslibrary.model.dataSource.InetDataSource
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.model.repository.FilmsRepositoryInterface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 
-class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<DataSource<List<FilmObject>>>) :
+class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<InetDataSource<List<FilmObject>>>) :
     ViewModel(), LifecycleObserver {
 
     private val myLiveData: MutableLiveData<AppState> = MutableLiveData()
