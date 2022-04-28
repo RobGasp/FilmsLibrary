@@ -7,13 +7,17 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="white">#FFFFFFFF</color>
+    <string name="actual">Актуальное</string>
     <string name="actual_text">Актуальное</string>
     <string name="app_name">FilmsLibrary</string>
+    <string name="cinemas">Кинотеатры</string>
     <string name="cinemas_fragment_is_chosen_text">Выбран фрагмент Кинотеатры</string>
     <string name="cinemas_text">Кинотеатры</string>
+    <string name="favourite">Избранное</string>
     <string name="favourite_fragment_is_chosen_text">Выбран фрагмент Избранное</string>
     <string name="favourite_text">Избранное</string>
-    <style name="Theme.FilmsLibrary" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <style name="Theme.FilmsLibrary" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

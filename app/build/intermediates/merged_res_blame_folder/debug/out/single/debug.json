@@ -1,11 +1,11 @@
 [
     {
-        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
-    },
-    {
         "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\drawable_favorite_40px.xml.flat",
         "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\drawable\\favorite_40px.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
         "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
@@ -52,6 +52,10 @@
         "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\navigation_nav_graph.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\navigation\\nav_graph.xml"
+    },
+    {
         "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\drawable_movie_40px.xml.flat",
         "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\drawable\\movie_40px.xml"
     },
@@ -66,6 +70,10 @@
     {
         "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_details_page.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\layout\\fragment_details_page.xml"
     },
     {
         "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",

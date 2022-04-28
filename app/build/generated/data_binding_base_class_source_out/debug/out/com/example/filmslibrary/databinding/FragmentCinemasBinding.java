@@ -4,9 +4,9 @@ package com.example.filmslibrary.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import com.example.filmslibrary.R;
 import java.lang.NullPointerException;
@@ -14,15 +14,15 @@ import java.lang.Override;
 
 public final class FragmentCinemasBinding implements ViewBinding {
   @NonNull
-  private final FrameLayout rootView;
+  private final ConstraintLayout rootView;
 
-  private FragmentCinemasBinding(@NonNull FrameLayout rootView) {
+  private FragmentCinemasBinding(@NonNull ConstraintLayout rootView) {
     this.rootView = rootView;
   }
 
   @Override
   @NonNull
-  public FrameLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -47,6 +47,6 @@ public final class FragmentCinemasBinding implements ViewBinding {
       throw new NullPointerException("rootView");
     }
 
-    return new FragmentCinemasBinding((FrameLayout) rootView);
+    return new FragmentCinemasBinding((ConstraintLayout) rootView);
   }
 }

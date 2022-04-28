@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/Work_project/FilmsLibrary/app/src/main/res/layout/activity_main.xml" value="0.1890625" />
+        <entry key="..\:/Android/Work_project/FilmsLibrary/app/src/main/res/layout/fragment_actual.xml" value="0.19322916666666667" />
+        <entry key="..\:/Android/Work_project/FilmsLibrary/app/src/main/res/layout/fragment_cinemas.xml" value="0.19322916666666667" />
+        <entry key="..\:/Android/Work_project/FilmsLibrary/app/src/main/res/layout/fragment_details_page.xml" value="0.19322916666666667" />
+        <entry key="..\:/Android/Work_project/FilmsLibrary/app/src/main/res/layout/fragment_favourite.xml" value="0.19322916666666667" />
+        <entry key="..\:/Android/Work_project/FilmsLibrary/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.2" />
+        <entry key="..\:/Android/Work_project/FilmsLibrary/app/src/main/res/menu/cinemas_top_app_bar_menu.xml" value="0.371875" />
       </map>
     </option>
   </component>

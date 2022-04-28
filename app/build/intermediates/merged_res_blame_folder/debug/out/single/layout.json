@@ -4,6 +4,10 @@
         "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\layout\\fragment_actual.xml"
     },
     {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_details_page.xml",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\layout\\fragment_details_page.xml"
+    },
+    {
         "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_cinemas.xml",
         "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\layout\\fragment_cinemas.xml"
     },
