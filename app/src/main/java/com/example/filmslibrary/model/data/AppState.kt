@@ -1,4 +1,5 @@
-package com.example.filmslibrary.model
+package com.example.filmslibrary.model.data
+
 
 import com.example.filmslibrary.model.repository.FilmObject
 import kotlinx.coroutines.Deferred

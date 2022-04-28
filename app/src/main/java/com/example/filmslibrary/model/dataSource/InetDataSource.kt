@@ -2,7 +2,7 @@ package com.example.filmslibrary.model.dataSource
 
 import kotlinx.coroutines.Deferred
 
-interface DataSource<T> {
+interface InetDataSource<T> {
 
     suspend fun getDataAsync(apiKey: String, language: String): Deferred<T>
 }

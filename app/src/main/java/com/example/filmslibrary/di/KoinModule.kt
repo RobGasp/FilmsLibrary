@@ -1,7 +1,6 @@
 package com.example.filmslibrary.di
 
-import com.example.filmslibrary.FilmsFragment.FilmsViewModel
-import com.example.filmslibrary.model.dataSource.DataSource
+import com.example.filmslibrary.ui.viewModel.FilmsViewModel
 import com.example.filmslibrary.model.dataSource.RetrofitImpl
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.model.repository.FilmsRepository
