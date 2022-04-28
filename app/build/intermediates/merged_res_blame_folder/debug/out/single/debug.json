@@ -1,0 +1,106 @@
+[
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\drawable_favorite_40px.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\drawable\\favorite_40px.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\drawable_theaters_48px.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\drawable\\theaters_48px.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_cinemas.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\layout\\fragment_cinemas.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_actual.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\layout\\fragment_actual.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\menu_cinemas_top_app_bar_menu.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\menu\\cinemas_top_app_bar_menu.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\menu_bottom_navigation_menu.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\menu\\bottom_navigation_menu.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\navigation_nav_graph.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\navigation\\nav_graph.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\drawable_movie_40px.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\drawable\\movie_40px.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_favourite.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\layout\\fragment_favourite.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_details_page.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\layout\\fragment_details_page.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\drawable_search_24px.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\drawable\\search_24px.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "G:\\Android\\Work_project\\FilmsLibrary\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "G:\\Android\\Work_project\\FilmsLibrary\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.webp"
+    }
+]

@@ -5,4 +5,9 @@
     <string name="cinemas_text">Кинотеатры</string>
     <string name="favourite_fragment_is_chosen_text">Выбран фрагмент Избранное</string>
     <string name="cinemas_fragment_is_chosen_text">Выбран фрагмент Кинотеатры</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="actual">Актуальное</string>
+    <string name="favourite">Избранное</string>
+    <string name="cinemas">Кинотеатры</string>
 </resources>
