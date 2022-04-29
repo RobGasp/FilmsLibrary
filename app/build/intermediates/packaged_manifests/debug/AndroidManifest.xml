@@ -40,7 +40,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.FilmsLibrary" >
         <activity
-            android:name="com.example.filmslibrary.MainActivity"
+            android:name="com.example.filmslibrary.ui.view.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

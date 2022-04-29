@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CinemasFragment">
+    tools:context=".ui.view.CinemasFragment">
 
     <TextView
         android:layout_width="match_parent"
