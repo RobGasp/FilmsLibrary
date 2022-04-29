@@ -74,8 +74,8 @@
 41-->G:\Android\Work_project\FilmsLibrary\app\src\main\AndroidManifest.xml:11:9-50
 42        <activity
 42-->G:\Android\Work_project\FilmsLibrary\app\src\main\AndroidManifest.xml:13:9-21:20
-43            android:name="com.example.filmslibrary.MainActivity"
-43-->G:\Android\Work_project\FilmsLibrary\app\src\main\AndroidManifest.xml:14:13-41
+43            android:name="com.example.filmslibrary.ui.view.MainActivity"
+43-->G:\Android\Work_project\FilmsLibrary\app\src\main\AndroidManifest.xml:14:13-49
 44            android:exported="true" >
 44-->G:\Android\Work_project\FilmsLibrary\app\src\main\AndroidManifest.xml:15:13-36
 45            <intent-filter>

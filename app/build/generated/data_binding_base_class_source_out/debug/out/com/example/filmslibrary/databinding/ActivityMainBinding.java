@@ -4,6 +4,7 @@ package com.example.filmslibrary.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,13 +25,17 @@ public final class ActivityMainBinding implements ViewBinding {
   public final BottomNavigationView bottomNavigationView;
 
   @NonNull
+  public final FrameLayout fragmentContainer;
+
+  @NonNull
   public final FragmentContainerView fragmentNavHost;
 
   private ActivityMainBinding(@NonNull ConstraintLayout rootView,
-      @NonNull BottomNavigationView bottomNavigationView,
+      @NonNull BottomNavigationView bottomNavigationView, @NonNull FrameLayout fragmentContainer,
       @NonNull FragmentContainerView fragmentNavHost) {
     this.rootView = rootView;
     this.bottomNavigationView = bottomNavigationView;
+    this.fragmentContainer = fragmentContainer;
     this.fragmentNavHost = fragmentNavHost;
   }
 
@@ -67,6 +72,12 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.fragment_container;
+      FrameLayout fragmentContainer = ViewBindings.findChildViewById(rootView, id);
+      if (fragmentContainer == null) {
+        break missingId;
+      }
+
       id = R.id.fragment_nav_host;
       FragmentContainerView fragmentNavHost = ViewBindings.findChildViewById(rootView, id);
       if (fragmentNavHost == null) {
@@ -74,7 +85,7 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((ConstraintLayout) rootView, bottomNavigationView,
-          fragmentNavHost);
+          fragmentContainer, fragmentNavHost);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

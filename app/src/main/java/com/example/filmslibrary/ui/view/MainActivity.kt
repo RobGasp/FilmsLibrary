@@ -1,4 +1,4 @@
-package com.example.filmslibrary
+package com.example.filmslibrary.ui.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
 
         val navView: BottomNavigationView = binding.bottomNavigationView
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_nav_host) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_nav_host) as NavHostFragment
         navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -44,5 +45,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    }
 }

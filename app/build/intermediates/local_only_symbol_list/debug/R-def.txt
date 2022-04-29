@@ -20,6 +20,7 @@ id bottom_navigation_view
 id cinemas_fragment
 id detailsPage_fragment
 id favourite_fragment
+id fragment_container
 id fragment_nav_host
 id nav_graph
 id search
