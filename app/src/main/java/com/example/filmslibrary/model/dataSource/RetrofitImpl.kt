@@ -14,16 +14,17 @@ import java.net.Proxy
 
 class RetrofitImpl : InetDataSource<List<FilmObject>> {
 
-    private val proxyHost = "5.189.155.147"
-    private val proxyPort = 1080
+    private val proxyHost = "208.102.51.6"
+    private val proxyPort = 58208
+
 
     private val proxy: Proxy = Proxy(Proxy.Type.HTTP, InetSocketAddress(proxyHost, proxyPort))
 
     override suspend fun getDataAsync(
         apiKey: String,
         language: String
-    ): Deferred<List<FilmObject>> {
-        return getService(BaseInterceptor.interceptor).getListOfFilmsAsync(apiKey, language)
+    ): List<FilmObject> {
+        return getService(BaseInterceptor.interceptor).getListOfFilmsAsync(apiKey, language).await()
     }
 
     private fun getService(interceptor: Interceptor): ApiService {

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_film_card">15dp</dimen>
+    <dimen name="film_cover_width">100dp</dimen>
+    <dimen name="film_cover_height">100dp</dimen>
+</resources>
