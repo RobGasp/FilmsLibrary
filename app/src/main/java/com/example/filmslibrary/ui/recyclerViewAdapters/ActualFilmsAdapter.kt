@@ -21,9 +21,8 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
         notifyDataSetChanged()
     }
 
-    fun setOnFilmClickListener(filmClickListenerFromActualFragment: FilmClickListener, film: FilmObject){
+    fun setOnFilmClickListener(filmClickListenerFromActualFragment: FilmClickListener) {
         this.filmClickListener = filmClickListenerFromActualFragment
-        filmClickListener?.filmClicked(film)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActualFilmsHolder {
@@ -58,6 +57,7 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
             title.text = film.title
             year.text = film.releaseDate
             genre.text = film.mediaType
+            root.setOnClickListener { filmClickListener?.filmClicked(filmData[adapterPosition]) }
         }
 
         fun getBinding(): FilmCardMaketBinding {

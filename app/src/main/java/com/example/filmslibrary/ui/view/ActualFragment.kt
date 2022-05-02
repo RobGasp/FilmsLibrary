@@ -20,7 +20,7 @@ import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.net.URL
 
-class ActualFragment : Fragment() {
+class ActualFragment : Fragment(), FilmClickListener {
 
     private var _binding: FragmentActualBinding? = null
     private val binding get() = _binding!!
@@ -36,7 +36,7 @@ class ActualFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentActualBinding.inflate(inflater, container, false)
         recyclerView = binding.recyclerViewActualFragment
         return binding.root
@@ -64,25 +64,7 @@ class ActualFragment : Fragment() {
 
         filmsViewModel.getFilms("0bca8a77230116b8ac43cd3b8634aca9", "ru-RU")
 
-        filmsList?.let {
-            adapter?.setFilm(it)
-        }
-
-        binding.loadingLayout.setOnClickListener {
-
-            //болванка фильма
-            val movie = FilmObject(title = "Movie from actual fragment")
-
-
-            //Эти две строки для открытия нового фргамента с описанием фильма, поместить потом в адаптер
-            // в клик листенер для элемента списка
-            //не забудьте передать в него обьект фильма выбранного, пока я сделал на существующий DTO класс,
-            //как помеянете класс, я изменю его.
-            val action =
-                ActualFragmentDirections.actionActualFragmentToDetailsPageFragment(movie = movie)
-            view.findNavController().navigate(action)
-
-        }
+        filmsList?.let { adapter?.setFilm(it) }
 
 //        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
 //            when (menuItem.itemId) {
@@ -100,16 +82,14 @@ class ActualFragment : Fragment() {
         recyclerView?.layoutManager = lm
         adapter = ActualFilmsAdapter()
         recyclerView?.adapter = adapter
-        // filmClickListener?.let { adapter?.setOnFilmClickListener(this, film) }
+        filmClickListener?.let { adapter?.setOnFilmClickListener(it) }
     }
 
     private fun renderData(appState: AppState) = with(binding) {
         when (appState) {
             is AppState.Success -> {
                 loadingLayout.visibility = View.GONE
-
-                    filmsList = appState.filmsData
-
+                filmsList = appState.filmsData
             }
             is AppState.Loading -> {
                 loadingLayout.visibility = View.VISIBLE
@@ -119,6 +99,20 @@ class ActualFragment : Fragment() {
             }
         }
     }
+
+
+    override fun filmClicked(film: FilmObject) {
+
+        //Эти две строки для открытия нового фргамента с описанием фильма, поместить потом в адаптер
+        // в клик листенер для элемента списка
+        //не забудьте передать в него обьект фильма выбранного, пока я сделал на существующий DTO класс,
+        //как помеянете класс, я изменю его.
+        //я сделал все, как надо, комментарии оставил для справки
+        val action =
+            ActualFragmentDirections.actionActualFragmentToDetailsPageFragment(movie = film)
+        view?.findNavController()?.navigate(action)
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
