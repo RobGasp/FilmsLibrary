@@ -10,4 +10,7 @@
     <string name="actual">Актуальное</string>
     <string name="favourite">Избранное</string>
     <string name="cinemas">Кинотеатры</string>
+    <string name="save_comment">Сохр.</string>
+    <string name="comments">Комментарий</string>
+    <string name="Error_rus">Ошибка</string>
 </resources>
