@@ -56,12 +56,13 @@ class ActualFragment : Fragment(), FilmClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-        filmsViewModel.getFilms("0bca8a77230116b8ac43cd3b8634aca9", "ru-RU")
+
 
         filmsViewModel.getMyLiveData().observe(requireActivity()) {
             renderData(it)
         }
 
+        filmsViewModel.getFilms("0bca8a77230116b8ac43cd3b8634aca9", "ru-RU")
 //        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
 //            when (menuItem.itemId) {
 //                R.id.search -> {
