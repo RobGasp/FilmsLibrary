@@ -29,7 +29,6 @@ class ActualFragment : Fragment(), FilmClickListener {
     private var filmClickListener: FilmClickListener? = null
     private var recyclerView: RecyclerView? = null
     private var adapter: ActualFilmsAdapter? = null
-    private var filmsList: List<FilmObject>? = null
 
 
     override fun onCreateView(
@@ -56,15 +55,12 @@ class ActualFragment : Fragment(), FilmClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initRecyclerView()
+        filmsViewModel.getFilms("0bca8a77230116b8ac43cd3b8634aca9", "ru-RU")
+
         filmsViewModel.getMyLiveData().observe(requireActivity()) {
             renderData(it)
         }
-
-        filmsViewModel.getFilms("0bca8a77230116b8ac43cd3b8634aca9", "ru-RU")
-
-        filmsList?.let { adapter?.setFilm(it) }
 
 //        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
 //            when (menuItem.itemId) {
@@ -89,7 +85,7 @@ class ActualFragment : Fragment(), FilmClickListener {
         when (appState) {
             is AppState.Success -> {
                 loadingLayout.visibility = View.GONE
-                filmsList = appState.filmsData
+                adapter?.setFilm(appState.filmsData)
             }
             is AppState.Loading -> {
                 loadingLayout.visibility = View.VISIBLE

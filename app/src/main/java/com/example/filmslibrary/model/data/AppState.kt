@@ -2,6 +2,7 @@ package com.example.filmslibrary.model.data
 
 
 import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.model.repository.FilmsList
 import kotlinx.coroutines.Deferred
 
 sealed class AppState {

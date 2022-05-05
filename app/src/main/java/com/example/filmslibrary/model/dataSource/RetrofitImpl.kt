@@ -2,6 +2,7 @@ package com.example.filmslibrary.model.dataSource
 
 
 import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.model.repository.FilmsList
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -12,10 +13,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.net.InetSocketAddress
 import java.net.Proxy
 
-class RetrofitImpl : InetDataSource<List<FilmObject>> {
+class RetrofitImpl : InetDataSource<FilmsList>{
 
-    private val proxyHost = "208.102.51.6"
-    private val proxyPort = 58208
+    private val proxyHost = "216.172.52.118"
+    private val proxyPort = 4555
 
 
     private val proxy: Proxy = Proxy(Proxy.Type.HTTP, InetSocketAddress(proxyHost, proxyPort))
@@ -23,7 +24,7 @@ class RetrofitImpl : InetDataSource<List<FilmObject>> {
     override suspend fun getDataAsync(
         apiKey: String,
         language: String
-    ): List<FilmObject> {
+    ): FilmsList {
         return getService(BaseInterceptor.interceptor).getListOfFilmsAsync(apiKey, language).await()
     }
 

@@ -15,6 +15,7 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
     private var filmData: List<FilmObject> = listOf()
     private var filmClickListener: FilmClickListener? = null
 
+
     @SuppressLint("NotifyDataSetChanged")
     fun setFilm(films: List<FilmObject>) {
         filmData = films
@@ -50,13 +51,17 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
         fun bind(film: FilmObject, field: FilmCardMaketBinding) = with(field) {
             Picasso
                 .get()
-                .load(film.posterPath)
+                .load("https://image.tmdb.org/t/p/w500/" + film.posterPath)
                 .fit()
                 .into(cover)
 
             title.text = film.title
             year.text = film.releaseDate
-            genre.text = film.mediaType
+
+            if (film.mediaType == "movie") {
+                mediaType.text = "Фильм"
+            }else mediaType.text = film.mediaType
+
             root.setOnClickListener { filmClickListener?.filmClicked(filmData[adapterPosition]) }
         }
 

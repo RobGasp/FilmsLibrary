@@ -4,8 +4,10 @@ import androidx.lifecycle.*
 import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.model.dataSource.InetDataSource
 import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.model.repository.FilmsList
 import com.example.filmslibrary.model.repository.FilmsRepositoryInterface
 import kotlinx.coroutines.*
+import java.lang.Thread.sleep
 
 class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<InetDataSource<List<FilmObject>>>) :
     ViewModel(), LifecycleObserver {
@@ -24,7 +26,7 @@ class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<I
                     repositoryInterface.getListOfFilmsFromInternetAsync(
                         apiKey,
                         language
-                    )
+                    ).getFilmsList()
                 )
             )
         }

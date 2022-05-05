@@ -1,6 +1,7 @@
 package com.example.filmslibrary.model.dataSource
 
 import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.model.repository.FilmsList
 import kotlinx.coroutines.Deferred
 import retrofit2.http.Body
 import retrofit2.http.Field
@@ -13,5 +14,5 @@ interface ApiService {
     fun getListOfFilmsAsync(
         @Query("api_key") apiKey: String,
         @Query("language")language: String
-    ): Deferred<List<FilmObject>>
+    ): Deferred<FilmsList>
 }
