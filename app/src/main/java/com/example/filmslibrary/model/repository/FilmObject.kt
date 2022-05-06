@@ -21,6 +21,7 @@ data class FilmObject(
     @SerializedName("vote_average")
     var voteAverage: Double? = 0.0,
     var overview: String? = null,
+
     @SerializedName("adult")
     var adult: Boolean? = false,
 ) : Parcelable {

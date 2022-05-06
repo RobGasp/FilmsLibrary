@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_cinemas" />
     <fragment
         android:id="@+id/detailsPage_fragment"
-        android:name="com.example.filmslibrary.DetailsPageFragment"
+        android:name="com.example.filmslibrary.ui.view.DetailsPageFragment"
         android:label="fragment_details_page"
         tools:layout="@layout/fragment_details_page" >
         <argument

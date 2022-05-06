@@ -1,13 +1,14 @@
-package com.example.filmslibrary
+package com.example.filmslibrary.ui.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.filmslibrary.databinding.FragmentActualBinding
 import com.example.filmslibrary.databinding.FragmentDetailsPageBinding
 import com.example.filmslibrary.model.repository.FilmObject
+import com.squareup.picasso.Picasso
 
 
 class DetailsPageFragment : Fragment() {
@@ -34,16 +35,24 @@ class DetailsPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDetailsPageBinding.inflate(inflater,container,false)
+        _binding = FragmentDetailsPageBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    @SuppressLint("SetTextI18n")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.textShowDelete.text = movie.title
+        Picasso
+            .get()
+            .load(movie.posterPath)
+            .fit()
+            .into(cover)
 
+        title.text = movie.title
+        year.text = movie.releaseDate
+        mediaType.text = movie.mediaType
+        voteAverage.text = "Рейтинг фильма: ${movie.voteAverage}"
+        description.text = movie.overview
     }
-
-
 }

@@ -4,9 +4,10 @@ import androidx.lifecycle.*
 import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.model.dataSource.InetDataSource
 import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.model.repository.FilmsList
 import com.example.filmslibrary.model.repository.FilmsRepositoryInterface
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
+import kotlinx.coroutines.*
+import java.lang.Thread.sleep
 
 class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<InetDataSource<List<FilmObject>>>) :
     ViewModel(), LifecycleObserver {
@@ -15,17 +16,29 @@ class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<I
 
     fun getMyLiveData() = myLiveData
 
-    suspend fun getFilms(apiKey:String, language:String) {
+    fun getFilms(apiKey: String, language: String) {
         myLiveData.value = AppState.Loading(null)
+        cancelJob()
 
-        viewModelScope.async(Dispatchers.IO) {
-            myLiveData.postValue(AppState.Success(repositoryInterface.getListOfFilmsFromInternetAsync(apiKey,language)))
-        }.await()
+        viewModelScope.launch(Dispatchers.IO) {
+            myLiveData.postValue(
+                AppState.Success(
+                    repositoryInterface.getListOfFilmsFromInternetAsync(
+                        apiKey,
+                        language
+                    ).getFilmsList()
+                )
+            )
+        }
     }
 
     override fun onCleared() {
-        myLiveData.value = AppState.Success(null)
+        myLiveData.value = AppState.Success(listOf())
         super.onCleared()
+    }
+
+    private fun cancelJob() {
+        viewModelScope.coroutineContext.cancelChildren()
     }
 }
 
