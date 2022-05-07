@@ -13,4 +13,5 @@
     <string name="save_comment">Сохр.</string>
     <string name="comments">Комментарий</string>
     <string name="Error_rus">Ошибка</string>
+    <string name="movie_name">{movie}</string>
 </resources>

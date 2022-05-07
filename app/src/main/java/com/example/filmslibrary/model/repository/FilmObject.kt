@@ -26,4 +26,8 @@ data class FilmObject(
     var adult: Boolean? = false,
 ) : Parcelable {
 
+    override fun toString(): String {
+        return title.toString()
+
+    }
 }

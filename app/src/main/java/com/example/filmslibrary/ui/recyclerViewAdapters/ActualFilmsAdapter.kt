@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.filmslibrary.databinding.FilmCardMaketBinding
 import com.example.filmslibrary.model.repository.FilmObject
-import com.example.filmslibrary.ui.FilmClickListener
 import com.squareup.picasso.Picasso
 
 class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHolder>() {
 
     private var filmData: List<FilmObject> = listOf()
-    private var filmClickListener: FilmClickListener? = null
+    var filmClickListener: FilmClickListener? = null
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -22,9 +21,9 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
         notifyDataSetChanged()
     }
 
-    fun setOnFilmClickListener(filmClickListenerFromActualFragment: FilmClickListener) {
-        this.filmClickListener = filmClickListenerFromActualFragment
-    }
+//    fun setOnFilmClickListener(filmClickListenerFromActualFragment: FilmClickListener) {
+//        this.filmClickListener = filmClickListenerFromActualFragment
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActualFilmsHolder {
         val binding = FilmCardMaketBinding.inflate(
@@ -46,7 +45,6 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
         RecyclerView.ViewHolder(itemView) {
 
         private var binding2 = binding
-            get() = field
 
         fun bind(film: FilmObject, field: FilmCardMaketBinding) = with(field) {
             Picasso
@@ -62,11 +60,19 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
                 mediaType.text = "Фильм"
             }else mediaType.text = film.mediaType
 
-            root.setOnClickListener { filmClickListener?.filmClicked(filmData[adapterPosition]) }
+            root.setOnClickListener { filmClickListener?.onFilmClicked(filmData[adapterPosition]) }
         }
 
         fun getBinding(): FilmCardMaketBinding {
             return binding2
         }
+    }
+
+    fun interface FilmClickListener {
+        fun onFilmClicked(film:FilmObject)
+    }
+
+    fun removeListener() {
+        filmClickListener = null
     }
 }
