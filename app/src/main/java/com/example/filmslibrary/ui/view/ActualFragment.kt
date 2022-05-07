@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
@@ -13,20 +14,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.filmslibrary.databinding.FragmentActualBinding
 import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.model.repository.FilmObject
-import com.example.filmslibrary.ui.FilmClickListener
 import com.example.filmslibrary.ui.recyclerViewAdapters.ActualFilmsAdapter
 import com.example.filmslibrary.ui.viewModel.FilmsViewModel
 import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.net.URL
 
-class ActualFragment : Fragment(), FilmClickListener {
+class ActualFragment : Fragment() {
 
     private var _binding: FragmentActualBinding? = null
     private val binding get() = _binding!!
 
     private val filmsViewModel: FilmsViewModel by viewModel()
-    private var filmClickListener: FilmClickListener? = null
     private var recyclerView: RecyclerView? = null
     private var adapter: ActualFilmsAdapter? = null
 
@@ -41,15 +40,15 @@ class ActualFragment : Fragment(), FilmClickListener {
         return binding.root
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is FilmClickListener) {
-            filmClickListener = context
-        }
-    }
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        if (context is FilmClickListener) {
+//            filmClickListener = context
+//        }
+//    }
 
     override fun onDetach() {
-        filmClickListener = null
+        adapter?.removeListener()
         super.onDetach()
     }
 
@@ -79,7 +78,9 @@ class ActualFragment : Fragment(), FilmClickListener {
         recyclerView?.layoutManager = lm
         adapter = ActualFilmsAdapter()
         recyclerView?.adapter = adapter
-        filmClickListener?.let { adapter?.setOnFilmClickListener(it) }
+        adapter?.filmClickListener = ActualFilmsAdapter.FilmClickListener {
+            movie -> filmClicked(movie)
+        }
     }
 
     private fun renderData(appState: AppState) = with(binding) {
@@ -98,13 +99,7 @@ class ActualFragment : Fragment(), FilmClickListener {
     }
 
 
-    override fun filmClicked(film: FilmObject) {
-
-        //Эти две строки для открытия нового фргамента с описанием фильма, поместить потом в адаптер
-        // в клик листенер для элемента списка
-        //не забудьте передать в него обьект фильма выбранного, пока я сделал на существующий DTO класс,
-        //как помеянете класс, я изменю его.
-        //я сделал все, как надо, комментарии оставил для справки
+     fun filmClicked(film: FilmObject) {
         val action =
             ActualFragmentDirections.actionActualFragmentToDetailsPageFragment(movie = film)
         view?.findNavController()?.navigate(action)
