@@ -6,6 +6,7 @@ import com.example.filmslibrary.di.application
 import com.example.filmslibrary.di.filmsModule
 import com.example.filmslibrary.room.FilmotekaDataBase
 import com.example.filmslibrary.room.repository.CacheFilmDao
+import com.example.filmslibrary.room.repository.FavoriteFilmDao
 import com.example.filmslibrary.room.repository.HistoryDao
 import org.koin.core.context.startKoin
 import java.lang.IllegalStateException
@@ -46,7 +47,7 @@ class App : Application() {
             return db!!.historyDao()
         }
 
-        fun getCacheDaoDao(): CacheFilmDao {
+        fun getCacheDao(): CacheFilmDao {
             if (db == null) {
                 synchronized(FilmotekaDataBase::class.java) {
                     if (db == null) {
@@ -64,6 +65,26 @@ class App : Application() {
                 }
             }
             return db!!.cacheDao()
+        }
+
+        fun getFavoriteFilmDao(): FavoriteFilmDao {
+            if (db == null) {
+                synchronized(FilmotekaDataBase::class.java) {
+                    if (db == null) {
+                        if (appInstance == null) {
+                            throw IllegalStateException("Application ids null meanwhile creating database")
+                        }
+                        db = Room.databaseBuilder(
+                            appInstance!!.applicationContext,
+                            FilmotekaDataBase::class.java,
+                            DB_NAME
+                        )
+                            .allowMainThreadQueries()
+                            .build()
+                    }
+                }
+            }
+            return db!!.favoriteDao()
         }
     }
 }
