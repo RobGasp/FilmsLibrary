@@ -1,7 +1,7 @@
 package com.example.filmslibrary.model.dto
 
 data class FilmDto (
-    var filmId: Int = 0,
+    var filmId: Long = 0,
     var posterPath: String = "",
     var title: String = "",
     var releaseDate: String = "",

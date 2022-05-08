@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey
 @Entity(indices = [Index(value = ["film_id"], unique = true)])
 data class CacheFilmEntity (
     @PrimaryKey(autoGenerate = true)
-    var id: Int,
+    var id: Long,
     @ColumnInfo(name = "film_id")
-    var filmId: Int,
+    var filmId: Long,
     @ColumnInfo(name = "poster_path")
     var posterPath: String,
     @ColumnInfo(name = "title")

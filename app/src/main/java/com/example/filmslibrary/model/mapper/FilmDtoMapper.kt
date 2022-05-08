@@ -14,7 +14,7 @@ class FilmDtoMapper {
         ): FilmDto {
             val filmDto = FilmDto()
 
-            filmDto.filmId = filmEntity.filmId
+            filmDto.filmId = filmEntity.filmId.toLong()
             filmDto.posterPath = filmEntity.posterPath
             filmDto.title = filmEntity.title
             filmDto.releaseDate = filmEntity.releaseDate
@@ -51,7 +51,7 @@ class FilmDtoMapper {
         fun filmObjectToFilmDto(filmObject: FilmObject): FilmDto {
             val filmDto = FilmDto()
 
-            filmDto.filmId = filmObject.id ?: -1
+            filmDto.filmId = filmObject.id?.toLong() ?: -1L
             filmDto.posterPath = filmObject.posterPath ?: ""
             filmDto.title = filmObject.title ?: ""
             filmDto.releaseDate = filmObject.releaseDate ?: ""
