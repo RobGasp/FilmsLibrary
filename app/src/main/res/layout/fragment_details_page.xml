@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginBottom="@dimen/details_fragment_margin_bottom"
     tools:context=".ui.view.DetailsPageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout

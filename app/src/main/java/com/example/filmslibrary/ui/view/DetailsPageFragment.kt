@@ -34,7 +34,7 @@ class DetailsPageFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetailsPageBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -45,7 +45,7 @@ class DetailsPageFragment : Fragment() {
 
         Picasso
             .get()
-            .load(movie.posterPath)
+            .load("https://image.tmdb.org/t/p/w500/" + movie.posterPath)
             .fit()
             .into(cover)
 
