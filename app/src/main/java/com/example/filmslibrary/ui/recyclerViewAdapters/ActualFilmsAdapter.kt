@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.filmslibrary.databinding.FilmCardMaketBinding
+import com.example.filmslibrary.model.mapper.FilmDtoMapper
 import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.room.service.CacheFilmService
 import com.squareup.picasso.Picasso
 
 class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHolder>() {
 
     private var filmData: List<FilmObject> = listOf()
     var filmClickListener: FilmClickListener? = null
+    private var cacheFilmService:CacheFilmService?=null
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -61,6 +64,8 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
             }else mediaType.text = film.mediaType
 
             root.setOnClickListener { filmClickListener?.onFilmClicked(filmData[adapterPosition]) }
+
+            cacheFilmService?.saveFilmToCache(FilmDtoMapper.filmObjectToFilmDto(film))
         }
 
         fun getBinding(): FilmCardMaketBinding {

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_actual_fragment_to_detailsPage_fragment"
             app:destination="@id/detailsPage_fragment" />
+        <action
+            android:id="@+id/action_actual_fragment_to_history_page_fragment"
+            app:destination="@id/history_page_fragment" />
     </fragment>
     <fragment
         android:id="@+id/favourite_fragment"
@@ -36,5 +39,12 @@
         <argument
             android:name="movie"
             app:argType="com.example.filmslibrary.model.repository.FilmObject" />
+    </fragment>
+    <fragment
+        android:id="@+id/history_page_fragment"
+        android:name="com.example.filmslibrary.ui.view.HistoryFragment"
+        android:label="@string/history"
+        tools:layout="@layout/fragment_history">
+
     </fragment>
 </navigation>
