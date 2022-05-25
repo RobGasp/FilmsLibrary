@@ -9,4 +9,8 @@ class HistoryService(private val historyDao: HistoryDao/*, private val cacheFilm
     fun getAllCache():List<HistoryEntity> {
         return historyDao.all()
     }
+
+    fun historyInsert(entity: HistoryEntity){
+        historyDao.insert(entity)
+    }
 }

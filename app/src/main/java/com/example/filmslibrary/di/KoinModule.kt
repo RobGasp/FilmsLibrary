@@ -11,9 +11,9 @@ import org.koin.dsl.module
 
 val application = module {
     single<FilmsRepositoryInterface<FilmsList>> { FilmsRepository(RetrofitImpl()) }
+    single { HistoryViewModel() }
 }
 
 val filmsModule = module {
     viewModel { FilmsViewModel(get()) }
-    viewModel { HistoryViewModel(get()) }
 }

@@ -1,9 +1,11 @@
 package com.example.filmslibrary.model.mapper
 
 import com.example.filmslibrary.model.dto.FilmDto
+import com.example.filmslibrary.model.dto.HistoryDto
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.room.entity.CacheFilmEntity
 import com.example.filmslibrary.room.entity.FavoriteFilmEntity
+import com.example.filmslibrary.room.entity.HistoryEntity
 
 class FilmDtoMapper {
 
@@ -63,5 +65,16 @@ class FilmDtoMapper {
 
             return filmDto
         }
+
+        fun filmObjectToHistoryDao(filmObject: FilmObject, dateRequest: String): HistoryEntity {
+            val historyEntity = HistoryEntity(0L, 0L, "")
+
+            historyEntity.id = filmObject.id
+            historyEntity.cacheFilmId = filmObject.id
+            historyEntity.dateRequest = dateRequest
+
+            return historyEntity
+        }
+
     }
 }

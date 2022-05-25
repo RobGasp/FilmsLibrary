@@ -131,8 +131,6 @@ class ActualFragment : Fragment() {
             R.id.history -> view?.findNavController()?.navigate(gotoHistoryFragment)
 
 
-        //Navigation.createNavigateOnClickListener(R.id.history_page_fragment)
-                //NavigationUI.onNavDestinationSelected(R.id.history_page_fragment,navController)
         }
         return super.onOptionsItemSelected(item)
     }

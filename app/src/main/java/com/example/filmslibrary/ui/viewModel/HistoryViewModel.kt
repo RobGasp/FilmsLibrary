@@ -2,6 +2,7 @@ package com.example.filmslibrary.ui.viewModel
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
+import com.example.filmslibrary.application.App
 import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.room.repository.HistoryDao
 import com.example.filmslibrary.room.service.HistoryService
@@ -9,8 +10,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-    class HistoryViewModel(historyDao: HistoryDao) : BaseViewModel<AppState>(), LifecycleObserver {
+    class HistoryViewModel() : BaseViewModel<AppState>(), LifecycleObserver {
 
+        private var historyDao: HistoryDao= App.getHistoryDao()
         private val historyLiveData: MutableLiveData<AppState> = MutableLiveData()
         private val historyService: HistoryService = HistoryService(historyDao)
 
