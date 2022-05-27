@@ -19,9 +19,13 @@ class CacheFilmServiceImpl(private val cacheFilmDao: CacheFilmDao, private val f
     @Transaction
     override fun saveFilmToCache(filmDto: FilmDto) {
         val filmEntity = FilmDtoMapper.filmDtoToFilmEntity(filmDto)
-        val favoriteFilmEntity = FilmDtoMapper.filmDtoToFavoriteFilmEntity(filmDto)
 
         cacheFilmDao.insert(filmEntity)
+    }
+
+    @Transaction
+    fun saveFilmToFavorite(filmDto: FilmDto){
+        val favoriteFilmEntity = FilmDtoMapper.filmDtoToFavoriteFilmEntity(filmDto)
         favoriteFilmDao.insert(favoriteFilmEntity)
     }
 }

@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.filmslibrary.application.App
 import com.example.filmslibrary.databinding.FilmCardMaketBinding
+import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.model.mapper.FilmDtoMapper
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.room.service.CacheFilmService
+import com.example.filmslibrary.room.service.CacheFilmServiceImpl
 import com.example.filmslibrary.room.service.HistoryService
 import com.squareup.picasso.Picasso
 import java.text.DateFormat
@@ -20,7 +22,8 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
 
     private var filmData: List<FilmObject> = listOf()
     var filmClickListener: FilmClickListener? = null
-    private var cacheFilmService: CacheFilmService? = null
+    private var cacheFilmService: CacheFilmService =
+        CacheFilmServiceImpl(App.getCacheDao(), App.getFavoriteFilmDao())
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -75,7 +78,7 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
                 )
             }
 
-            cacheFilmService?.saveFilmToCache(FilmDtoMapper.filmObjectToFilmDto(film))
+            cacheFilmService.saveFilmToCache(FilmDtoMapper.filmObjectToFilmDto(film))
         }
 
         fun getBinding(): FilmCardMaketBinding {

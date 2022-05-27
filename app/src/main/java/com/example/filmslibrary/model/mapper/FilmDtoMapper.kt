@@ -1,5 +1,6 @@
 package com.example.filmslibrary.model.mapper
 
+import com.example.filmslibrary.application.App
 import com.example.filmslibrary.model.dto.FilmDto
 import com.example.filmslibrary.model.dto.HistoryDto
 import com.example.filmslibrary.model.repository.FilmObject
@@ -16,7 +17,7 @@ class FilmDtoMapper {
         ): FilmDto {
             val filmDto = FilmDto()
 
-            filmDto.filmId = filmEntity.filmId.toLong()
+            filmDto.filmId = filmEntity.filmId
             filmDto.posterPath = filmEntity.posterPath
             filmDto.title = filmEntity.title
             filmDto.releaseDate = filmEntity.releaseDate
@@ -32,7 +33,6 @@ class FilmDtoMapper {
         fun filmDtoToFilmEntity(filmDto: FilmDto): CacheFilmEntity {
 
             return CacheFilmEntity(
-                0,
                 filmDto.filmId,
                 filmDto.posterPath,
                 filmDto.title,
@@ -46,14 +46,14 @@ class FilmDtoMapper {
 
         fun filmDtoToFavoriteFilmEntity(filmDto: FilmDto): FavoriteFilmEntity {
             return FavoriteFilmEntity(
-                0, filmDto.filmId.toLong(), filmDto.isFavorite
+                0, filmDto.filmId, filmDto.isFavorite
             )
         }
 
         fun filmObjectToFilmDto(filmObject: FilmObject): FilmDto {
             val filmDto = FilmDto()
 
-            filmDto.filmId = filmObject.id?.toLong() ?: -1L
+            filmDto.filmId = filmObject.id ?: -1L
             filmDto.posterPath = filmObject.posterPath ?: ""
             filmDto.title = filmObject.title ?: ""
             filmDto.releaseDate = filmObject.releaseDate ?: ""
@@ -74,6 +74,21 @@ class FilmDtoMapper {
             historyEntity.dateRequest = dateRequest
 
             return historyEntity
+        }
+
+        fun historyDaoToFilmObject(historyEntity: HistoryEntity): FilmObject {
+
+            val film = App.getCacheDao().getById(historyEntity.cacheFilmId)
+            return FilmObject(
+                film.filmId,
+                film.posterPath,
+                film.title,
+                film.releaseDate,
+                film.mediaType,
+                film.voteAverage,
+                film.overview,
+                film.adult
+            )
         }
 
     }

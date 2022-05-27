@@ -46,5 +46,8 @@
         android:label="@string/history"
         tools:layout="@layout/fragment_history">
 
+        <action
+            android:id="@+id/action_history_page_fragment_to_detailsPage_fragment"
+            app:destination="@id/detailsPage_fragment" />
     </fragment>
 </navigation>

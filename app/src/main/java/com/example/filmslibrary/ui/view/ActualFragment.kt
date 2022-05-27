@@ -129,13 +129,11 @@ class ActualFragment : Fragment() {
         val gotoHistoryFragment = ActualFragmentDirections.actionActualFragmentToHistoryPageFragment()
         when(item.itemId){
             R.id.history -> view?.findNavController()?.navigate(gotoHistoryFragment)
-
-
         }
         return super.onOptionsItemSelected(item)
     }
 
-     fun filmClicked(film: FilmObject) {
+     private fun filmClicked(film: FilmObject) {
         val action =
             ActualFragmentDirections.actionActualFragmentToDetailsPageFragment(movie = film)
         view?.findNavController()?.navigate(action)
