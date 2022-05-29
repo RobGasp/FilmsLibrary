@@ -14,4 +14,6 @@
     <string name="comments">Комментарий</string>
     <string name="Error_rus">Ошибка</string>
     <string name="movie_name">{movie}</string>
+    <string name="history">История</string>
+    <string name="tab_name_actual">Актуальное</string>
 </resources>

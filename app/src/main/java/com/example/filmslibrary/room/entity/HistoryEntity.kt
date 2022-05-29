@@ -5,9 +5,9 @@ import androidx.room.*
 @Entity
 data class HistoryEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    var id: Long,
     @ColumnInfo(name = "cache_film_id")
-    val cacheFilmId: Long,
+    var cacheFilmId: Long,
     @ColumnInfo(name = "date_request")
-    val dateRequest: Long
+    var dateRequest: String
 )

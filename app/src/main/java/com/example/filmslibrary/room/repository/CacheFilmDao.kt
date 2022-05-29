@@ -9,10 +9,10 @@ interface CacheFilmDao {
     fun all(): List<CacheFilmEntity>
 
     //Скорее всего этот метод не будет использоваться
-    @Query("SELECT * FROM CacheFilmEntity WHERE id=:id")
+    @Query("SELECT * FROM CacheFilmEntity WHERE film_id=:id")
     fun getById(id: Long): CacheFilmEntity
 
-    @Query("SELECT * FROM CacheFilmEntity WHERE id=:filmId")
+    @Query("SELECT * FROM CacheFilmEntity WHERE film_id=:filmId")
     fun getCacheFilmByFilmId(filmId: Long): CacheFilmEntity
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
