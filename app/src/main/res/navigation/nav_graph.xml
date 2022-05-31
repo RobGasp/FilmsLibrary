@@ -9,7 +9,7 @@
         android:id="@+id/actual_fragment"
         android:name="com.example.filmslibrary.ui.view.ActualFragment"
         android:label="@string/actual"
-        tools:layout="@layout/fragment_actual" >
+        tools:layout="@layout/fragment_actual">
         <action
             android:id="@+id/action_actual_fragment_to_detailsPage_fragment"
             app:destination="@id/detailsPage_fragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/favourite_fragment"
         android:name="com.example.filmslibrary.ui.view.FavouriteFragment"
         android:label="@string/favourite"
-        tools:layout="@layout/fragment_favourite" >
+        tools:layout="@layout/fragment_favourite">
         <action
             android:id="@+id/action_favourite_fragment_to_detailsPage_fragment"
             app:destination="@id/detailsPage_fragment" />
@@ -29,6 +29,11 @@
         android:label="@string/cinemas"
         tools:layout="@layout/fragment_cinemas" />
     <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.example.filmslibrary.ui.view.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
         android:id="@+id/detailsPage_fragment"
         android:name="com.example.filmslibrary.ui.view.DetailsPageFragment"
         android:label="@string/movie_name"
@@ -37,4 +42,5 @@
             android:name="movie"
             app:argType="com.example.filmslibrary.model.repository.FilmObject" />
     </fragment>
+
 </navigation>

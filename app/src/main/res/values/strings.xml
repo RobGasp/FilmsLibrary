@@ -14,4 +14,26 @@
     <string name="comments">Комментарий</string>
     <string name="Error_rus">Ошибка</string>
     <string name="movie_name">{movie}</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Пароль</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="sign_in">Вход</string>
+    <string name="sign_in_action">Войти</string>
+    <string name="sign_up_action">Зарегистрироваться</string>
+    <string name="forget_password">Забыли пароль?</string>
+    <string name="sign_up_error">Не удалось зарегистироваться</string>
+    <string name="send_verification_email_successful">На вашу почту была отправленна ссылка для подтверждения регистрации</string>
+    <string name="send_verification_email_error">Не удалось добавить email для подтверждения!</string>
+    <string name="settings">Настройки</string>
+    <string name="not_registred">Войдите или зарегистируйтесь</string>
+    <string name="Sign_In">Вход</string>
+    <string name="sign_in_error">Неудалось войти</string>
+    <string name="Enter">Авторизация</string>
+    <string name="Sign_out">Выход</string>
+    <string name="password_hint_repeat">Повторите пароль</string>
+    <string name="password_doesnt_match">Пароли не совпадают</string>
+    <string name="email_reset_was_sent">Вам отправленно письмо для восстановление пароля</string>
+    <string name="email_should_be_filled">Для восстановление пароля укажите ваш email </string>
+
+
 </resources>
