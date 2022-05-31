@@ -14,6 +14,8 @@
     <string name="comments">Комментарий</string>
     <string name="Error_rus">Ошибка</string>
     <string name="movie_name">{movie}</string>
+    <string name="history">История</string>
+    <string name="tab_name_actual">Актуальное</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Пароль</string>
     <string name="sign_up">Регистрация</string>

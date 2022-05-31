@@ -5,14 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmslibrary.application.App
 import com.example.filmslibrary.databinding.FilmCardMaketBinding
+import com.example.filmslibrary.model.data.AppState
+import com.example.filmslibrary.model.mapper.FilmDtoMapper
 import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.room.service.CacheFilmService
+import com.example.filmslibrary.room.service.CacheFilmServiceImpl
+import com.example.filmslibrary.room.service.HistoryService
 import com.squareup.picasso.Picasso
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHolder>() {
 
     private var filmData: List<FilmObject> = listOf()
     var filmClickListener: FilmClickListener? = null
+    private var cacheFilmService: CacheFilmService =
+        CacheFilmServiceImpl(App.getCacheDao(), App.getFavoriteFilmDao())
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -20,10 +31,6 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
         filmData = films
         notifyDataSetChanged()
     }
-
-//    fun setOnFilmClickListener(filmClickListenerFromActualFragment: FilmClickListener) {
-//        this.filmClickListener = filmClickListenerFromActualFragment
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActualFilmsHolder {
         val binding = FilmCardMaketBinding.inflate(
@@ -58,18 +65,40 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
 
             if (film.mediaType == "movie") {
                 mediaType.text = "Фильм"
-            }else mediaType.text = film.mediaType
+            } else mediaType.text = film.mediaType
 
-            root.setOnClickListener { filmClickListener?.onFilmClicked(filmData[adapterPosition]) }
+            root.setOnClickListener {
+                filmClickListener?.onFilmClicked(filmData[adapterPosition])
+                val historyService = HistoryService(App.getHistoryDao())
+                historyService.historyInsert(
+                    FilmDtoMapper.filmObjectToHistoryDao(
+                        filmData[adapterPosition],
+                        getDate()
+                    )
+                )
+            }
+
+            cacheFilmService.saveFilmToCache(FilmDtoMapper.filmObjectToFilmDto(film))
         }
 
         fun getBinding(): FilmCardMaketBinding {
             return binding2
         }
+
+        private fun getDate(): String {
+            val currentDate = Date()
+            // Форматирование времени как "день.месяц.год"
+            val dateFormat: DateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+            val dateText: String = dateFormat.format(currentDate)
+            // Форматирование времени как "часы:минуты:секунды"
+            val timeFormat: DateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+            val timeText: String = timeFormat.format(currentDate)
+            return "Дата запроса: $dateText \nВремя запроса: $timeText"
+        }
     }
 
     fun interface FilmClickListener {
-        fun onFilmClicked(film:FilmObject)
+        fun onFilmClicked(film: FilmObject)
     }
 
     fun removeListener() {
