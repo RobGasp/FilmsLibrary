@@ -34,7 +34,10 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.actual_fragment, R.id.favourite_fragment, R.id.cinemas_fragment,R.id.settings_fragment, R.id.history_page_fragment, R.id.history_page_fragment
+                R.id.actual_fragment,
+                R.id.favourite_fragment,
+                R.id.cinemas_fragment,
+                R.id.settings_fragment
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

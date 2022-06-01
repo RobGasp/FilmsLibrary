@@ -1,6 +1,7 @@
 package com.example.filmslibrary.ui.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +17,7 @@ import com.example.filmslibrary.ui.dialogs.DialogConst
 import com.google.firebase.auth.FirebaseUser
 
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : Fragment(), FragmentContract {
 
     private lateinit var textViewAccount: TextView
     private var _binding: FragmentSettingsBinding? = null
@@ -39,7 +40,9 @@ class SettingsFragment : Fragment() {
 
         textViewAccount = binding.accountName
 
-        dialog = Dialog(this){view.findNavController().navigate(R.id.settings_fragment)}
+        dialog = Dialog(this) {
+            //листенер на закрытие окна диалога, может пригодится
+        }
 
         binding.settingsSignIn.setOnClickListener {
             dialog?.createSignDialog(DialogConst.SIGN_IN_STATE)
@@ -58,7 +61,7 @@ class SettingsFragment : Fragment() {
     }
 
 
-     fun update(user: FirebaseUser?) {
+    override fun update(user: FirebaseUser?) {
         if (user == null) {
             binding.accountName.text = getString(R.string.not_registred)
             binding.signOut.visibility = View.GONE
@@ -66,12 +69,11 @@ class SettingsFragment : Fragment() {
             binding.settingsSignIn.visibility = View.VISIBLE
 
         } else {
-            if(isAdded){
-                binding.settingsSignUp.visibility = View.GONE
-                binding.settingsSignIn.visibility = View.GONE
-                binding.signOut.visibility = View.VISIBLE
-                binding.accountName.text = user.email
-            }
+            binding.settingsSignUp.visibility = View.GONE
+            binding.settingsSignIn.visibility = View.GONE
+            binding.signOut.visibility = View.VISIBLE
+            binding.accountName.text = user.email
+
 
         }
     }

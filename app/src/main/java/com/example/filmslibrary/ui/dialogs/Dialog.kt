@@ -12,10 +12,10 @@ import com.example.filmslibrary.model.accountHelper.FirebaseAuthentication
 
 class Dialog(
     private val fragment: Fragment,
-    onClosed:()-> Unit
+    onClosed: () -> Unit
 ) {
-    private val accountHelper = AccountHelper.newInstance(fragment)
-    val onClosed : ()->Unit = { onClosed() }
+    private val accountHelper = AccountHelper(fragment)
+    val onClosed: () -> Unit = { onClosed() }
     fun createSignDialog(index: Int) {
         val builder = AlertDialog.Builder(fragment.requireContext())
         val binding = SiginDialogBinding.inflate(fragment.layoutInflater)
@@ -86,7 +86,7 @@ class Dialog(
 
     private fun setDialogState(index: Int, binding: SiginDialogBinding) {
         if (index == DialogConst.SIGN_UP_STATE) {
-                binding.signInTittle.text = fragment.resources.getString(R.string.sign_up)
+            binding.signInTittle.text = fragment.resources.getString(R.string.sign_up)
             binding.btnSignUpIn.text = fragment.resources.getString(R.string.sign_up_action)
             binding.signInPasswordRepeat.visibility = View.VISIBLE
             binding.btnForgetPass.visibility = View.GONE

@@ -55,7 +55,10 @@ class FavouriteFragment : Fragment(), FragmentContract {
             view.findNavController().navigate(action)
 
         }
-        dialog = Dialog(this) { view.findNavController().navigate(R.id.favourite_fragment) }
+        dialog = Dialog(this) {
+            //листенер на закрытие окна диалога, может пригодится
+        }
+
         binding.btnAuth.setOnClickListener {
             dialog?.createSignDialog(DialogConst.SIGN_UP_STATE)
 
@@ -63,7 +66,6 @@ class FavouriteFragment : Fragment(), FragmentContract {
         }
         binding.btnSignIn.setOnClickListener {
             dialog?.createSignDialog(DialogConst.SIGN_IN_STATE)
-
         }
     }
 
@@ -81,16 +83,13 @@ class FavouriteFragment : Fragment(), FragmentContract {
 
 
     override fun update(user: FirebaseUser?) {
-        Log.d("FFrag", "updated")
         if (user == null) {
             binding.btnSignIn.visibility = View.VISIBLE
             binding.btnAuth.visibility = View.VISIBLE
 
         } else {
-            if (isAdded) {
-                binding.btnSignIn.visibility = View.GONE
-                binding.btnAuth.visibility = View.GONE
-            }
+            binding.btnSignIn.visibility = View.GONE
+            binding.btnAuth.visibility = View.GONE
         }
     }
 }

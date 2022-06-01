@@ -8,7 +8,7 @@ import com.example.filmslibrary.ui.view.FragmentContract
 
 import com.google.firebase.auth.FirebaseUser
 
-class AccountHelper private constructor(
+class AccountHelper(
     private val fragment: Fragment,
 ) {
 
@@ -16,7 +16,7 @@ class AccountHelper private constructor(
     private val mAuth = FirebaseAuthentication.mAuth
 
 
-    fun signUpWithEmail(email: String, password: String,dialogDismiss: () -> Unit){
+    fun signUpWithEmail(email: String, password: String, dialogDismiss: () -> Unit) {
         if (email.isNotEmpty() && password.isNotEmpty()) {
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -37,12 +37,12 @@ class AccountHelper private constructor(
         }
     }
 
-    fun signInWithEmail(email: String, password: String,  dialogDismiss: () -> Unit) {
+    fun signInWithEmail(email: String, password: String, dialogDismiss: () -> Unit) {
         if (email.isNotEmpty() && password.isNotEmpty()) {
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     user = task.result.user
-                    val fragmentUpdater =  fragment as FragmentContract
+                    val fragmentUpdater = fragment as FragmentContract
                     fragmentUpdater.update(user)
                     dialogDismiss()
                 } else {
@@ -77,17 +77,6 @@ class AccountHelper private constructor(
                     .show()
             }
         }
-    }
-
-
-    companion object {
-        @Volatile
-        private var INSTANCE: AccountHelper? = null
-        fun newInstance(fragment: Fragment): AccountHelper = INSTANCE ?: synchronized(this) {
-            INSTANCE
-                ?: AccountHelper(fragment).also { INSTANCE = it }
-        }
-
     }
 
 
