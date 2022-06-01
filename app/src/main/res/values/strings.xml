@@ -36,6 +36,7 @@
     <string name="password_doesnt_match">Пароли не совпадают</string>
     <string name="email_reset_was_sent">Вам отправленно письмо для восстановление пароля</string>
     <string name="email_should_be_filled">Для восстановление пароля укажите ваш email </string>
+    <string name="error_password_recover">Не удалось отправить запрос на востановление</string>
 
 
 </resources>

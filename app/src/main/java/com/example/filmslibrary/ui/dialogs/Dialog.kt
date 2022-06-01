@@ -12,9 +12,10 @@ import com.example.filmslibrary.model.accountHelper.FirebaseAuthentication
 
 class Dialog(
     private val fragment: Fragment,
+    onClosed:()-> Unit
 ) {
     private val accountHelper = AccountHelper.newInstance(fragment)
-
+    val onClosed : ()->Unit = { onClosed() }
     fun createSignDialog(index: Int) {
         val builder = AlertDialog.Builder(fragment.requireContext())
         val binding = SiginDialogBinding.inflate(fragment.layoutInflater)
@@ -34,6 +35,7 @@ class Dialog(
         }
 
         dialog.show()
+        dialog.setOnDismissListener { onClosed() }
 
     }
 
@@ -52,7 +54,7 @@ class Dialog(
                     } else {
                         Toast.makeText(
                             fragment.requireContext(),
-                            "Не удалось отправить запрос на востановление",
+                            fragment.requireContext().getString(R.string.error_password_recover),
                             Toast.LENGTH_LONG
                         ).show()
                     }

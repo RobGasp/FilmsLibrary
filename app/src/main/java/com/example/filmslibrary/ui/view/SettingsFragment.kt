@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import com.example.filmslibrary.R
 
 import com.example.filmslibrary.databinding.FragmentSettingsBinding
@@ -15,7 +16,7 @@ import com.example.filmslibrary.ui.dialogs.DialogConst
 import com.google.firebase.auth.FirebaseUser
 
 
-class SettingsFragment : Fragment(), FragmentContract {
+class SettingsFragment : Fragment() {
 
     private lateinit var textViewAccount: TextView
     private var _binding: FragmentSettingsBinding? = null
@@ -35,19 +36,17 @@ class SettingsFragment : Fragment(), FragmentContract {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        update(FirebaseAuthentication.mAuth.currentUser)
+
         textViewAccount = binding.accountName
 
-        dialog = Dialog(this)
+        dialog = Dialog(this){view.findNavController().navigate(R.id.settings_fragment)}
 
         binding.settingsSignIn.setOnClickListener {
             dialog?.createSignDialog(DialogConst.SIGN_IN_STATE)
-            update(FirebaseAuthentication.mAuth.currentUser)
         }
 
         binding.settingsSignUp.setOnClickListener {
             dialog?.createSignDialog(DialogConst.SIGN_UP_STATE)
-            update(FirebaseAuthentication.mAuth.currentUser)
 
         }
 
@@ -59,7 +58,7 @@ class SettingsFragment : Fragment(), FragmentContract {
     }
 
 
-    override fun update(user: FirebaseUser?) {
+     fun update(user: FirebaseUser?) {
         if (user == null) {
             binding.accountName.text = getString(R.string.not_registred)
             binding.signOut.visibility = View.GONE
@@ -67,11 +66,13 @@ class SettingsFragment : Fragment(), FragmentContract {
             binding.settingsSignIn.visibility = View.VISIBLE
 
         } else {
+            if(isAdded){
+                binding.settingsSignUp.visibility = View.GONE
+                binding.settingsSignIn.visibility = View.GONE
+                binding.signOut.visibility = View.VISIBLE
+                binding.accountName.text = user.email
+            }
 
-            binding.settingsSignUp.visibility = View.GONE
-            binding.settingsSignIn.visibility = View.GONE
-            binding.signOut.visibility = View.VISIBLE
-            binding.accountName.text = user.email
         }
     }
 

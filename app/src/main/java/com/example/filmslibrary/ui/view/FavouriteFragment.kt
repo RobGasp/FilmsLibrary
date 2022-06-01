@@ -1,12 +1,18 @@
 package com.example.filmslibrary.ui.view
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.DialogFragment
+import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.filmslibrary.R
 import com.example.filmslibrary.databinding.FragmentFavouriteBinding
 import com.example.filmslibrary.model.accountHelper.FirebaseAuthentication
@@ -22,7 +28,6 @@ class FavouriteFragment : Fragment(), FragmentContract {
 
     private var dialog: Dialog? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,7 +40,6 @@ class FavouriteFragment : Fragment(), FragmentContract {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        update(FirebaseAuthentication.mAuth.currentUser)
 
         binding.textToDelete.setOnClickListener {
 
@@ -51,14 +55,15 @@ class FavouriteFragment : Fragment(), FragmentContract {
             view.findNavController().navigate(action)
 
         }
-        dialog = Dialog(this)
+        dialog = Dialog(this) { view.findNavController().navigate(R.id.favourite_fragment) }
         binding.btnAuth.setOnClickListener {
             dialog?.createSignDialog(DialogConst.SIGN_UP_STATE)
-            update(FirebaseAuthentication.mAuth.currentUser)
+
+
         }
         binding.btnSignIn.setOnClickListener {
             dialog?.createSignDialog(DialogConst.SIGN_IN_STATE)
-            update(FirebaseAuthentication.mAuth.currentUser)
+
         }
     }
 
@@ -68,21 +73,24 @@ class FavouriteFragment : Fragment(), FragmentContract {
         update(FirebaseAuthentication.mAuth.currentUser)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+
+    override fun onDestroy() {
+        super.onDestroy()
         _binding = null
     }
 
 
     override fun update(user: FirebaseUser?) {
+        Log.d("FFrag", "updated")
         if (user == null) {
-                binding.btnSignIn.visibility = View.VISIBLE
-                binding.btnAuth.visibility = View.VISIBLE
+            binding.btnSignIn.visibility = View.VISIBLE
+            binding.btnAuth.visibility = View.VISIBLE
 
         } else {
+            if (isAdded) {
                 binding.btnSignIn.visibility = View.GONE
                 binding.btnAuth.visibility = View.GONE
-
+            }
         }
     }
 }
