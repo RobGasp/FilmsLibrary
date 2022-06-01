@@ -124,4 +124,7 @@ dependencies {
     //UI Automator
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
     androidTestImplementation 'androidx.test:rules:1.4.1-alpha05'
+
+    //Maps
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 }
