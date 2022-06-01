@@ -35,7 +35,7 @@ import kotlinx.coroutines.launch
     }
 
     override fun onCleared() {
-        historyLiveData.value = AppState.Success(listOf())
+//        historyLiveData.value = AppState.Success(listOf())
         super.onCleared()
     }
 }
