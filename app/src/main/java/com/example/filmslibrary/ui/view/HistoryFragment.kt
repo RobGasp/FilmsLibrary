@@ -42,7 +42,7 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
 
-        historyViewModel.getHistoryLiveData().observe(requireActivity()) {
+        historyViewModel.getHistoryLiveData().observe(viewLifecycleOwner) {
             renderData(it)
         }
         historyViewModel.getHistoryList()

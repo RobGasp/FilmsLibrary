@@ -32,9 +32,6 @@ class ActualFragment : Fragment() {
     private var _binding: FragmentActualBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var navController:NavController
-    private lateinit var navHostFragment: NavHostFragment
-
     private val filmsViewModel: FilmsViewModel by viewModel()
     private var recyclerView: RecyclerView? = null
     private var adapter: ActualFilmsAdapter? = null
@@ -75,9 +72,8 @@ class ActualFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
 
-        navController = Navigation.findNavController(requireActivity(), R.id.fragment_nav_host);
 
-            filmsViewModel.getMyLiveData().observe(requireActivity()) {
+            filmsViewModel.getMyLiveData().observe(viewLifecycleOwner) {
             renderData(it)
         }
 
