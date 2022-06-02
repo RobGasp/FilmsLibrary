@@ -66,7 +66,7 @@ class FilmDtoMapper {
             return filmDto
         }
 
-        fun filmObjectToHistoryDao(filmObject: FilmObject, dateRequest: String): HistoryEntity {
+        fun filmObjectToHistoryEntity(filmObject: FilmObject, dateRequest: String): HistoryEntity {
             val historyEntity = HistoryEntity(0L, 0L, "")
 
             historyEntity.id = filmObject.id
@@ -76,7 +76,7 @@ class FilmDtoMapper {
             return historyEntity
         }
 
-        fun historyDaoToFilmObject(historyEntity: HistoryEntity): FilmObject {
+        fun historyEntityToFilmObject(historyEntity: HistoryEntity): FilmObject {
 
             val film = App.getCacheDao().getById(historyEntity.cacheFilmId)
             return FilmObject(
@@ -90,6 +90,20 @@ class FilmDtoMapper {
                 film.adult
             )
         }
+
+//        fun favoriteEntityToFilmObject(favoriteFilmEntity: FavoriteFilmEntity):FilmObject{
+//            val film = App.getFavoriteFilmDao().getById(favoriteFilmEntity.cacheFilmId)
+//            return FilmObject(
+//                film.filmId,
+//                film.posterPath,
+//                film.title,
+//                film.releaseDate,
+//                film.mediaType,
+//                film.voteAverage,
+//                film.overview,
+//                film.adult
+//            )
+//        }
 
     }
 }

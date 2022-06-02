@@ -1,16 +1,14 @@
 package com.example.filmslibrary.ui.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.filmslibrary.R
 import com.example.filmslibrary.databinding.FragmentHistoryBinding
-import com.example.filmslibrary.di.filmsModule
 import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.model.mapper.FilmDtoMapper
 import com.example.filmslibrary.room.entity.HistoryEntity
@@ -73,7 +71,7 @@ class HistoryFragment : Fragment() {
 
     private fun historyClicked(historyEntity: HistoryEntity) {
 
-        val film = FilmDtoMapper.historyDaoToFilmObject(historyEntity)
+        val film = FilmDtoMapper.historyEntityToFilmObject(historyEntity)
         val action =
             HistoryFragmentDirections.actionHistoryPageFragmentToDetailsPageFragment(movie = film)
         view?.findNavController()?.navigate(action)

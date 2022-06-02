@@ -4,16 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.filmslibrary.application.App
-import com.example.filmslibrary.databinding.FragmentHistoryBinding
 import com.example.filmslibrary.databinding.HistoryCardMaketBinding
-import com.example.filmslibrary.model.dto.FilmDto
 import com.example.filmslibrary.model.mapper.FilmDtoMapper
-import com.example.filmslibrary.model.repository.FilmObject
-import com.example.filmslibrary.room.entity.CacheFilmEntity
 import com.example.filmslibrary.room.entity.HistoryEntity
-import com.example.filmslibrary.room.service.CacheFilmService
-import com.example.filmslibrary.room.service.CacheFilmServiceImpl
 import com.squareup.picasso.Picasso
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
@@ -51,14 +44,14 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
             Picasso
                 .get()
                 .load(
-                    "https://image.tmdb.org/t/p/w500/" + FilmDtoMapper.historyDaoToFilmObject(
+                    "https://image.tmdb.org/t/p/w500/" + FilmDtoMapper.historyEntityToFilmObject(
                         singleHistoryFilm
                     ).posterPath
                 )
                 .fit()
                 .into(historyFilmImage)
 
-            historyFilmTitle.text = FilmDtoMapper.historyDaoToFilmObject(singleHistoryFilm).title
+            historyFilmTitle.text = FilmDtoMapper.historyEntityToFilmObject(singleHistoryFilm).title
 
             historyDateRequest.text = singleHistoryFilm.dateRequest
 

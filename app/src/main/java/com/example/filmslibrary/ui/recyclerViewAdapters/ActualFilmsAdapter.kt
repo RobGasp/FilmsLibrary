@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.filmslibrary.application.App
 import com.example.filmslibrary.databinding.FilmCardMaketBinding
-import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.model.mapper.FilmDtoMapper
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.room.service.CacheFilmService
@@ -71,7 +70,7 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
                 filmClickListener?.onFilmClicked(filmData[adapterPosition])
                 val historyService = HistoryService(App.getHistoryDao())
                 historyService.historyInsert(
-                    FilmDtoMapper.filmObjectToHistoryDao(
+                    FilmDtoMapper.filmObjectToHistoryEntity(
                         filmData[adapterPosition],
                         getDate()
                     )
