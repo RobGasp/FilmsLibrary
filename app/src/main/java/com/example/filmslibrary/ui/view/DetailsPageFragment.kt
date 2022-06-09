@@ -6,21 +6,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
+import com.example.filmslibrary.R
+import com.example.filmslibrary.application.App
 import com.example.filmslibrary.databinding.FragmentDetailsPageBinding
+import com.example.filmslibrary.model.mapper.FilmDtoMapper
 import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.room.entity.FavoriteFilmEntity
+import com.example.filmslibrary.room.service.FavoriteService
 import com.squareup.picasso.Picasso
 
 
 class DetailsPageFragment : Fragment() {
 
-    companion object {
-        val MOVIE = "movie"
-    }
-
-
     private var _binding: FragmentDetailsPageBinding? = null
     private val binding get() = _binding!!
 
+    private var favoriteService: FavoriteService = FavoriteService(App.getFavoriteFilmDao())
+    private var isFavorite: Boolean? = null
+    private var isFav: Boolean? = null
+    private var favoriteFilmEntity: FavoriteFilmEntity? = null
     private lateinit var movie: FilmObject
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,5 +60,40 @@ class DetailsPageFragment : Fragment() {
         mediaType.text = movie.mediaType
         voteAverage.text = "Рейтинг фильма: ${movie.voteAverage}"
         description.text = movie.overview
+
+        favoriteFilmEntity = favoriteService.getFavoriteFilm(movie.id)
+
+        if (favoriteFilmEntity == null) {
+            isFavorite = false
+            like.setImageResource(R.drawable.favorite_false)
+        } else {
+            isFavorite = true
+            like.setImageResource(R.drawable.ic_favorite_true)
+        }
+        clickToLike(isFavorite!!)
+    }
+
+    private fun clickToLike(isFavorite: Boolean) = with(binding) {
+        isFav = isFavorite
+        like.setOnClickListener {
+            if (!isFav!!) {
+                favoriteService.insertFavoriteFilm(FilmDtoMapper.filmObjectToFavoriteEntity(movie))
+                like.setImageResource(R.drawable.ic_favorite_true)
+                favoriteFilmEntity = FavoriteFilmEntity(movie.id, movie.id, true)
+                isFav = true
+                Toast.makeText(context, "${movie.title} добавлен в избранное", LENGTH_SHORT).show()
+            } else {
+                isFav = isFavorite
+                favoriteService.deleteFavoriteFilm(FilmDtoMapper.filmObjectToFavoriteEntity(movie))
+                like.setImageResource(R.drawable.favorite_false)
+                favoriteFilmEntity = FavoriteFilmEntity(movie.id, movie.id, false)
+                isFav = false
+                Toast.makeText(context, "${movie.title} удален из избранного", LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    companion object {
+        val MOVIE = "movie"
     }
 }

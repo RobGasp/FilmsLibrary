@@ -55,12 +55,6 @@ class ActualFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        if (context is FilmClickListener) {
-//            filmClickListener = context
-//        }
-//    }
 
     override fun onDetach() {
         adapter?.removeListener()
@@ -78,15 +72,6 @@ class ActualFragment : Fragment() {
         }
 
         filmsViewModel.getFilms("0bca8a77230116b8ac43cd3b8634aca9", "ru-RU")
-//        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
-//            when (menuItem.itemId) {
-//                R.id.search -> {
-//                    //TODO Поиск
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
     }
 
     private fun initRecyclerView() {

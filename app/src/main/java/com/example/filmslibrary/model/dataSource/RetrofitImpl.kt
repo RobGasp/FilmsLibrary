@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.net.InetSocketAddress
 import java.net.Proxy
 
-class RetrofitImpl : InetDataSource<FilmsList>{
+class RetrofitImpl : InetDataSource<FilmsList,FilmObject>{
 
     private val proxyHost = "216.172.52.118"
     private val proxyPort = 4555
@@ -28,10 +28,13 @@ class RetrofitImpl : InetDataSource<FilmsList>{
         return getService(BaseInterceptor.interceptor).getListOfFilmsAsync(apiKey, language).await()
     }
 
+    override suspend fun getFilmAsync(id: Long, apiKey: String, language: String): FilmObject {
+        return getService(BaseInterceptor.interceptor).getSingleFilmAsync(id,apiKey, language).await()
+    }
+
     private fun getService(interceptor: Interceptor): ApiService {
         return createRetrofit(interceptor).create(ApiService::class.java)
     }
-
     private fun createRetrofit(interceptor: Interceptor): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_LIST_OF_FILMS_URL)
@@ -40,6 +43,7 @@ class RetrofitImpl : InetDataSource<FilmsList>{
             .client(createHTPPClient(interceptor))
             .build()
     }
+
 
     private fun createHTPPClient(interceptor: Interceptor): OkHttpClient {
         val httpClient = OkHttpClient.Builder()

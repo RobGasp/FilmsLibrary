@@ -34,7 +34,7 @@ class HistoryFragment : Fragment() {
     }
 
     override fun onDetach() {
-        historyAdapter?.historyClickListener
+        historyAdapter?.historyClickListener = null
         super.onDetach()
     }
 
@@ -81,6 +81,4 @@ class HistoryFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

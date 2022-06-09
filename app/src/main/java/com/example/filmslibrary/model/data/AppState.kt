@@ -16,6 +16,6 @@ sealed class AppState {
 
     data class HistorySuccess(val historyData:List<HistoryEntity>):AppState()
 
-    data class FavoriteSucess(val favoriteFilmDao: List<FavoriteFilmEntity>):AppState()
+    data class FavoriteSuccess(val favoriteData: List<FavoriteFilmEntity>):AppState()
 
 }

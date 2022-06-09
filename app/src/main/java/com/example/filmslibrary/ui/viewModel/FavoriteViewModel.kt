@@ -3,24 +3,30 @@ package com.example.filmslibrary.ui.viewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.filmslibrary.application.App
 import com.example.filmslibrary.model.data.AppState
+import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.model.repository.FilmsList
+import com.example.filmslibrary.model.repository.FilmsRepositoryInterface
 import com.example.filmslibrary.room.repository.FavoriteFilmDao
 import com.example.filmslibrary.room.service.FavoriteService
+import com.example.filmslibrary.ui.recyclerViewAdapters.FavoriteAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FavoriteViewModel: BaseViewModel<AppState>() {
+class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInterface<FilmsList, FilmObject>): BaseViewModel<AppState>() {
 
     private var favoriteFilmDao: FavoriteFilmDao = App.getFavoriteFilmDao()
     private var favoriteLiveData:MutableLiveData<AppState> = MutableLiveData()
     private var favoriteFilmService: FavoriteService = FavoriteService(favoriteFilmDao)
+    private var adapter:FavoriteAdapter?=null
 
     fun  getFavoriteLiveData() = favoriteLiveData
 
     fun getFavoriteList(){
+        adapter?.setFilmsRepositoryInterface(filmsRepositoryInterface)
         cancelJob()
         viewModelCoroutineScope.launch (Dispatchers.IO){
             favoriteLiveData.postValue(
-                AppState.FavoriteSucess(favoriteFilmService.getAllFavoriteFilms())
+                AppState.FavoriteSuccess(favoriteFilmService.getAllFavoriteFilms())
             )
         }
     }
@@ -30,7 +36,7 @@ class FavoriteViewModel: BaseViewModel<AppState>() {
     }
 
     override fun onCleared() {
-        favoriteLiveData.value = AppState.FavoriteSucess(listOf())
+        favoriteLiveData.value = AppState.FavoriteSuccess(listOf())
         super.onCleared()
     }
 }

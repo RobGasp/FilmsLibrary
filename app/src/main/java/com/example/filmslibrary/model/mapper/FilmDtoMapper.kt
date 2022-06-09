@@ -4,9 +4,14 @@ import com.example.filmslibrary.application.App
 import com.example.filmslibrary.model.dto.FilmDto
 import com.example.filmslibrary.model.dto.HistoryDto
 import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.model.repository.FilmsRepository
 import com.example.filmslibrary.room.entity.CacheFilmEntity
 import com.example.filmslibrary.room.entity.FavoriteFilmEntity
 import com.example.filmslibrary.room.entity.HistoryEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.internal.notify
 
 class FilmDtoMapper {
 
@@ -91,19 +96,39 @@ class FilmDtoMapper {
             )
         }
 
-//        fun favoriteEntityToFilmObject(favoriteFilmEntity: FavoriteFilmEntity):FilmObject{
-//            val film = App.getFavoriteFilmDao().getById(favoriteFilmEntity.cacheFilmId)
-//            return FilmObject(
-//                film.filmId,
-//                film.posterPath,
-//                film.title,
-//                film.releaseDate,
-//                film.mediaType,
-//                film.voteAverage,
-//                film.overview,
-//                film.adult
-//            )
-//        }
+        fun favoriteEntityToFilmObject(favoriteFilmEntity: FavoriteFilmEntity): FilmObject {
+ //           val film = App.getFavoriteFilmDao().getById(favoriteFilmEntity.id)
+            var movie = FilmObject()
+            val repositoryInterface: FilmsRepository? = null
+            CoroutineScope(Dispatchers.IO).launch {
+                repositoryInterface?.let {
+                    movie = repositoryInterface.getSingleFilmFromInternetAsync(
+                        favoriteFilmEntity.id,
+                        "0bca8a77230116b8ac43cd3b8634aca9",
+                        "ru-RU"
+                    )
+                }
+            }
+
+            return FilmObject(
+                movie.id,
+                movie.posterPath,
+                movie.title,
+                movie.releaseDate,
+                movie.mediaType,
+                movie.voteAverage,
+                movie.overview,
+                movie.adult
+            )
+        }
+
+        fun filmObjectToFavoriteEntity(filmObject: FilmObject):FavoriteFilmEntity{
+            return FavoriteFilmEntity(
+                filmObject.id,
+                filmObject.id,
+                true
+            )
+        }
 
     }
 }
