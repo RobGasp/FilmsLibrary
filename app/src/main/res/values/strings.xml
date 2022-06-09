@@ -37,6 +37,19 @@
     <string name="email_reset_was_sent">Вам отправленно письмо для восстановление пароля</string>
     <string name="email_should_be_filled">Для восстановление пароля укажите ваш email </string>
     <string name="error_password_recover">Не удалось отправить запрос на востановление</string>
+    <string name="need_permission_to_read_contacts">Необходимо предоставить разрешение для чтения контактов</string>
+    <string name="need_permission_to_find_location">Необходимо разрешение определения местоположения</string>
+    <string name="looks_like_location_disabled">Возможно, выключена функция определения местоположения</string>
+    <string name="enter_query">Введите запрос</string>
+    <string name="search_on_map">Поиск</string>
+    <string name="map_mode">Режим карты</string>
+    <string name="normal">Нормальный</string>
+    <string name="satellites">Спутник</string>
+    <string name="terrain">Схема</string>
+    <string name="traffic">Трафик</string>
+    <string name="start_marker">Старт</string>
+    <string name="dialog_address_title">Найденный адресс</string>
+    <string name="dialog_address_ok">Ok</string>
 
 
 </resources>

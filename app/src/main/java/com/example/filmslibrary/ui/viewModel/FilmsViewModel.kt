@@ -5,11 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.model.dataSource.InetDataSource
 import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.model.repository.FilmsList
 import com.example.filmslibrary.model.repository.FilmsRepositoryInterface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<InetDataSource<List<FilmObject>>>) :
+class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<FilmsList,FilmObject>) :
     BaseViewModel<AppState>(), LifecycleObserver {
 
     private val myLiveData: MutableLiveData<AppState> = MutableLiveData()
@@ -40,5 +41,6 @@ class FilmsViewModel(private val repositoryInterface: FilmsRepositoryInterface<I
         myLiveData.value = AppState.Success(listOf())
         super.onCleared()
     }
+
 }
 

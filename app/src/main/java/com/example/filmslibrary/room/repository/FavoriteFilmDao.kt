@@ -14,7 +14,7 @@ interface FavoriteFilmDao {
     @Query("SELECT * FROM FavoriteFilmEntity WHERE id=:filmId")
     fun getFavoriteFilmByFilmId(filmId: Long): FavoriteFilmEntity
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(entity: FavoriteFilmEntity)
 
     @Update
