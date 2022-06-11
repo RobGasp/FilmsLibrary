@@ -18,11 +18,11 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>(),
     CoroutineScope by MainScope() {
 
     var favoriteClickListener: FavoriteClickListener? = null
-    private var favoriteData: List<FavoriteFilmEntity> = listOf()
+    private var favoriteData: List<FilmObject> = listOf()
     private var filmsRepositoryInterface: FilmsRepositoryInterface<FilmsList, FilmObject>? = null
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setFavorite(favoriteFilmEntity: List<FavoriteFilmEntity>) {
+    fun setFavorite(favoriteFilmEntity: List<FilmObject>) {
         favoriteData = favoriteFilmEntity
         notifyDataSetChanged()
     }
@@ -51,27 +51,17 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>(),
 
         private var binding2 = binding
 
-        fun bind(favoriteSingleFilm: FavoriteFilmEntity, field: FavoriteCardMaketBinding) =
+        fun bind(favoriteSingleFilm: FilmObject, field: FavoriteCardMaketBinding) =
             with(field) {
-                // var movie: FilmObject?=FilmObject()
-                launch {
-                    val movie = filmsRepositoryInterface?.getSingleFilmFromInternetAsync(
-                        favoriteSingleFilm.id,
-                        "0bca8a77230116b8ac43cd3b8634aca9",
-                        "ru-RU"
-                    )
-                    withContext(Dispatchers.Main) {
                         Picasso
                             .get()
-                            .load("https://image.tmdb.org/t/p/w500/" + movie?.posterPath)
+                            .load("https://image.tmdb.org/t/p/w500/" + favoriteSingleFilm.posterPath)
                             .fit()
                             .into(favoriteFilmImage)
 
-                        favoriteFilmTitle.text = movie?.title
+                        favoriteFilmTitle.text = favoriteSingleFilm.title
 
-                        favoriteReleaseDate.text = movie?.releaseDate
-                    }
-                }
+                        favoriteReleaseDate.text = favoriteSingleFilm.releaseDate
 
                 root.setOnClickListener {
                     favoriteClickListener?.onFavoriteClickListener(favoriteData[adapterPosition])
@@ -85,7 +75,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>(),
     }
 
     fun interface FavoriteClickListener {
-        fun onFavoriteClickListener(favoriteFilmEntity: FavoriteFilmEntity)
+        fun onFavoriteClickListener(favoriteFilmEntity: FilmObject)
     }
 
     fun removeListener() {
