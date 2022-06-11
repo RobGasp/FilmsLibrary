@@ -95,10 +95,9 @@ class FavouriteFragment() : Fragment(), FragmentContract {
         }
     }
 
-    private fun favoriteClicked(favoriteFilmEntity: FavoriteFilmEntity) {
-        val film = FilmDtoMapper.favoriteEntityToFilmObject(favoriteFilmEntity)
+    private fun favoriteClicked(favoriteFilmEntity: FilmObject) {
         val action =
-            FavouriteFragmentDirections.actionFavouriteFragmentToDetailsPageFragment(movie = film)
+            FavouriteFragmentDirections.actionFavouriteFragmentToDetailsPageFragment(movie = favoriteFilmEntity)
         view?.findNavController()?.navigate(action)
     }
 
