@@ -1,15 +1,12 @@
 package com.example.filmslibrary.ui.view
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
 import com.example.filmslibrary.R
-
 import com.example.filmslibrary.databinding.FragmentSettingsBinding
 import com.example.filmslibrary.model.accountHelper.FirebaseAuthentication
 import com.example.filmslibrary.ui.dialogs.Dialog
@@ -30,7 +27,6 @@ class SettingsFragment : Fragment(), FragmentContract {
     ): View? {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
 
@@ -73,8 +69,6 @@ class SettingsFragment : Fragment(), FragmentContract {
             binding.settingsSignIn.visibility = View.GONE
             binding.signOut.visibility = View.VISIBLE
             binding.accountName.text = user.email
-
-
         }
     }
 
@@ -82,5 +76,4 @@ class SettingsFragment : Fragment(), FragmentContract {
         super.onStart()
         update(FirebaseAuthentication.mAuth.currentUser)
     }
-
 }

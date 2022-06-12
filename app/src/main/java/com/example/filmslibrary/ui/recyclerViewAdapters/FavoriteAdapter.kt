@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmslibrary.R
 import com.example.filmslibrary.databinding.FavoriteCardMaketBinding
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.model.repository.FilmsList
-import com.example.filmslibrary.model.repository.FilmsRepository
 import com.example.filmslibrary.model.repository.FilmsRepositoryInterface
-import com.example.filmslibrary.room.entity.FavoriteFilmEntity
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
 
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>(),
     CoroutineScope by MainScope() {
@@ -56,7 +56,8 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>(),
                         Picasso
                             .get()
                             .load("https://image.tmdb.org/t/p/w500/" + favoriteSingleFilm.posterPath)
-                            .fit()
+                            .resizeDimen(R.dimen.film_cover_width,R.dimen.film_cover_height)
+                            .centerInside()
                             .into(favoriteFilmImage)
 
                         favoriteFilmTitle.text = favoriteSingleFilm.title

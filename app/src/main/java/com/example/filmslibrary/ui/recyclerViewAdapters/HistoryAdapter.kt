@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmslibrary.R
 import com.example.filmslibrary.databinding.HistoryCardMaketBinding
 import com.example.filmslibrary.model.mapper.FilmDtoMapper
 import com.example.filmslibrary.room.entity.HistoryEntity
@@ -48,7 +49,8 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
                         singleHistoryFilm
                     ).posterPath
                 )
-                .fit()
+                .resizeDimen(R.dimen.film_cover_width,R.dimen.film_cover_height)
+                .centerInside()
                 .into(historyFilmImage)
 
             historyFilmTitle.text = FilmDtoMapper.historyEntityToFilmObject(singleHistoryFilm).title

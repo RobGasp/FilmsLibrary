@@ -13,19 +13,21 @@ import com.example.filmslibrary.ui.recyclerViewAdapters.FavoriteAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInterface<FilmsList, FilmObject>): BaseViewModel<AppState>() {
+class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInterface<FilmsList, FilmObject>) :
+    BaseViewModel<AppState>() {
 
     private var favoriteFilmDao: FavoriteFilmDao = App.getFavoriteFilmDao()
-    private var favoriteLiveData:MutableLiveData<AppState> = MutableLiveData()
+    private var favoriteLiveData: MutableLiveData<AppState> = MutableLiveData()
     private var favoriteFilmService: FavoriteService = FavoriteService(favoriteFilmDao)
-    private var adapter:FavoriteAdapter?=null
+    private var adapter: FavoriteAdapter? = null
 
-    fun  getFavoriteLiveData() = favoriteLiveData
+    fun getFavoriteLiveData() = favoriteLiveData
 
-    fun getFavoriteList(){
+    fun getFavoriteList() {
         adapter?.setFilmsRepositoryInterface(filmsRepositoryInterface)
+        favoriteLiveData.value = AppState.Loading(null)
         cancelJob()
-        viewModelCoroutineScope.launch (Dispatchers.IO){
+        viewModelCoroutineScope.launch(Dispatchers.IO) {
 
             val moviesIdList: List<FavoriteFilmEntity> = favoriteFilmService.getAllFavoriteFilms()
             favoriteLiveData.postValue(
@@ -34,10 +36,14 @@ class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInt
         }
     }
 
-    private suspend fun getMovieFromServer(moviesIdList: List<FavoriteFilmEntity>): List<FilmObject>{
+    private suspend fun getMovieFromServer(moviesIdList: List<FavoriteFilmEntity>): List<FilmObject> {
         val list = mutableListOf<FilmObject>()
-        for (id in moviesIdList){
-            val movie: FilmObject = filmsRepositoryInterface.getSingleFilmFromInternetAsync(id.id,"0bca8a77230116b8ac43cd3b8634aca9", "ru-RU")
+        for (id in moviesIdList) {
+            val movie: FilmObject = filmsRepositoryInterface.getSingleFilmFromInternetAsync(
+                id.id,
+                "0bca8a77230116b8ac43cd3b8634aca9",
+                "ru-RU"
+            )
             list.add(movie)
         }
         return list

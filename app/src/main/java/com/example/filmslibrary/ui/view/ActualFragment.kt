@@ -1,19 +1,9 @@
 package com.example.filmslibrary.ui.view
 
-import android.app.ActionBar
-import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.filmslibrary.R
@@ -22,10 +12,7 @@ import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.ui.recyclerViewAdapters.ActualFilmsAdapter
 import com.example.filmslibrary.ui.viewModel.FilmsViewModel
-import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.component.getScopeId
-import java.net.URL
 
 class ActualFragment : Fragment() {
 
@@ -35,7 +22,6 @@ class ActualFragment : Fragment() {
     private val filmsViewModel: FilmsViewModel by viewModel()
     private var recyclerView: RecyclerView? = null
     private var adapter: ActualFilmsAdapter? = null
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +37,6 @@ class ActualFragment : Fragment() {
     ): View {
         _binding = FragmentActualBinding.inflate(inflater, container, false)
         recyclerView = binding.recyclerViewActualFragment
-
         return binding.root
     }
 
@@ -67,7 +52,7 @@ class ActualFragment : Fragment() {
         initRecyclerView()
 
 
-            filmsViewModel.getMyLiveData().observe(viewLifecycleOwner) {
+        filmsViewModel.getMyLiveData().observe(viewLifecycleOwner) {
             renderData(it)
         }
 
@@ -79,8 +64,8 @@ class ActualFragment : Fragment() {
         recyclerView?.layoutManager = lm
         adapter = ActualFilmsAdapter()
         recyclerView?.adapter = adapter
-        adapter?.filmClickListener = ActualFilmsAdapter.FilmClickListener {
-            movie -> filmClicked(movie)
+        adapter?.filmClickListener = ActualFilmsAdapter.FilmClickListener { movie ->
+            filmClicked(movie)
         }
     }
 
@@ -107,14 +92,15 @@ class ActualFragment : Fragment() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val gotoHistoryFragment = ActualFragmentDirections.actionActualFragmentToHistoryPageFragment()
-        when(item.itemId){
+        val gotoHistoryFragment =
+            ActualFragmentDirections.actionActualFragmentToHistoryPageFragment()
+        when (item.itemId) {
             R.id.history -> view?.findNavController()?.navigate(gotoHistoryFragment)
         }
         return super.onOptionsItemSelected(item)
     }
 
-     private fun filmClicked(film: FilmObject) {
+    private fun filmClicked(film: FilmObject) {
         val action =
             ActualFragmentDirections.actionActualFragmentToDetailsPageFragment(movie = film)
         view?.findNavController()?.navigate(action)

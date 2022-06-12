@@ -52,13 +52,18 @@ class DetailsPageFragment : Fragment() {
         Picasso
             .get()
             .load("https://image.tmdb.org/t/p/w500/" + movie.posterPath)
-            .fit()
+            .resizeDimen(R.dimen.image_description_size,R.dimen.image_description_size)
+            .centerInside()
             .into(cover)
 
         title.text = movie.title
         year.text = movie.releaseDate
-        mediaType.text = movie.mediaType
-        voteAverage.text = "Рейтинг фильма: ${movie.voteAverage}"
+
+        if (movie.mediaType == "movie") {
+            mediaType.text = "Фильм"
+        } else mediaType.text = movie.mediaType
+
+        voteAverage.text = "Рейтинг: ${movie.voteAverage}"
         description.text = movie.overview
 
         favoriteFilmEntity = favoriteService.getFavoriteFilm(movie.id)

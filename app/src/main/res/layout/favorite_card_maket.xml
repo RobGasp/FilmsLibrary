@@ -9,11 +9,11 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/favorite_film_image"
         android:layout_width="@dimen/film_cover_width"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/film_cover_height"
         android:src="@drawable/unknown_cover"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/history_film_title"
+        app:layout_constraintEnd_toStartOf="@id/favorite_film_title"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -21,16 +21,20 @@
         android:id="@+id/favorite_film_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/history_film_image"
+        android:layout_marginLeft="@dimen/text_margin_left"
+        app:layout_constraintStart_toEndOf="@id/favorite_film_image"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text = "Фильм"/>
 
     <TextView
         android:id="@+id/favorite_release_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/history_film_image"
-        app:layout_constraintTop_toBottomOf="@id/history_film_title"
+        android:layout_marginLeft="@dimen/text_margin_left"
+        app:layout_constraintStart_toEndOf="@id/favorite_film_image"
+        app:layout_constraintTop_toBottomOf="@id/favorite_film_title"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text = "Дата релиза: 15.08.2022"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
