@@ -50,6 +50,8 @@
     <string name="start_marker">Старт</string>
     <string name="dialog_address_title">Найденный адресс</string>
     <string name="dialog_address_ok">Ok</string>
+    <string name="enter_button_text">Войти</string>
+    <string name="registry_text">Регистрация</string>
 
 
 </resources>

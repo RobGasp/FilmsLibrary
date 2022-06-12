@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmslibrary.R
 import com.example.filmslibrary.application.App
 import com.example.filmslibrary.databinding.FilmCardMaketBinding
 import com.example.filmslibrary.model.mapper.FilmDtoMapper
@@ -56,7 +57,9 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
             Picasso
                 .get()
                 .load("https://image.tmdb.org/t/p/w500/" + film.posterPath)
-                .fit()
+                //.fit()
+                .resizeDimen(R.dimen.film_cover_width, R.dimen.film_cover_height)
+                .centerInside()
                 .into(cover)
 
             title.text = film.title

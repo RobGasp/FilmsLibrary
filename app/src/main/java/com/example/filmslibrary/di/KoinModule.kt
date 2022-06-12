@@ -10,15 +10,12 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val application = module {
-    single <FilmsRepositoryInterface<FilmsList, FilmObject>> { FilmsRepository(RetrofitImpl()) }
-
-    //single { FavoriteViewModel() }
+    single<FilmsRepositoryInterface<FilmsList, FilmObject>> { FilmsRepository(RetrofitImpl()) }
 }
 
 
 val filmsModule = module {
     viewModel { FilmsViewModel(get()) }
     single { HistoryViewModel() }
-    viewModel {FavoriteViewModel(get())}
-
+    viewModel { FavoriteViewModel(get()) }
 }
