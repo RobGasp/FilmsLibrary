@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmslibrary.BuildConfig
 import com.example.filmslibrary.R
 import com.example.filmslibrary.databinding.FavoriteCardMaketBinding
 import com.example.filmslibrary.model.repository.FilmObject
@@ -20,6 +21,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>(),
     var favoriteClickListener: FavoriteClickListener? = null
     private var favoriteData: List<FilmObject> = listOf()
     private var filmsRepositoryInterface: FilmsRepositoryInterface<FilmsList, FilmObject>? = null
+    private var imageSourcePath = BuildConfig.IMAGE_SOURCE_PATH
 
     @SuppressLint("NotifyDataSetChanged")
     fun setFavorite(favoriteFilmEntity: List<FilmObject>) {
@@ -53,16 +55,16 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>(),
 
         fun bind(favoriteSingleFilm: FilmObject, field: FavoriteCardMaketBinding) =
             with(field) {
-                        Picasso
-                            .get()
-                            .load("https://image.tmdb.org/t/p/w500/" + favoriteSingleFilm.posterPath)
-                            .resizeDimen(R.dimen.film_cover_width,R.dimen.film_cover_height)
-                            .centerInside()
-                            .into(favoriteFilmImage)
+                Picasso
+                    .get()
+                    .load(imageSourcePath + favoriteSingleFilm.posterPath)
+                    .resizeDimen(R.dimen.film_cover_width, R.dimen.film_cover_height)
+                    .centerInside()
+                    .into(favoriteFilmImage)
 
-                        favoriteFilmTitle.text = favoriteSingleFilm.title
+                favoriteFilmTitle.text = favoriteSingleFilm.title
 
-                        favoriteReleaseDate.text = favoriteSingleFilm.releaseDate
+                favoriteReleaseDate.text = favoriteSingleFilm.releaseDate
 
                 root.setOnClickListener {
                     favoriteClickListener?.onFavoriteClickListener(favoriteData[adapterPosition])

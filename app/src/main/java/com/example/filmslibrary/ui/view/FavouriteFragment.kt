@@ -26,7 +26,7 @@ class FavouriteFragment() : Fragment(), FragmentContract {
     private var favoriteAdapter: FavoriteAdapter? = null
     private val favoriteViewModel: FavoriteViewModel by viewModel()
     private var favoriteRecyclerVew: RecyclerView? = null
-    private var film = FilmObject()
+
 
     private var dialog: Dialog? = null
 
@@ -34,7 +34,7 @@ class FavouriteFragment() : Fragment(), FragmentContract {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentFavouriteBinding.inflate(inflater, container, false)
         favoriteRecyclerVew = binding.favoriteRecyclerView
         return binding.root
@@ -42,6 +42,7 @@ class FavouriteFragment() : Fragment(), FragmentContract {
 
     override fun onDetach() {
         favoriteAdapter?.favoriteClickListener = null
+        favoriteAdapter?.removeListener()
         super.onDetach()
     }
 

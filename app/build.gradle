@@ -28,6 +28,15 @@ android {
         }
     }
 
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("app.properties").newDataInputStream())
+        def apiKey = properties.getProperty("API_KEY", "")
+        def imageSource_path = properties.getProperty("IMAGE_SOURCE_PATH")
+        it.buildConfigField "String", "API_KEY", apiKey
+        it.buildConfigField "String", "IMAGE_SOURCE_PATH", imageSource_path
+    }
+
     buildFeatures {
         viewBinding true
     }

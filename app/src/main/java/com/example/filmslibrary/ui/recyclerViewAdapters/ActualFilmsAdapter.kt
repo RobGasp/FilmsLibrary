@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmslibrary.BuildConfig
 import com.example.filmslibrary.R
 import com.example.filmslibrary.application.App
 import com.example.filmslibrary.databinding.FilmCardMaketBinding
@@ -24,6 +25,7 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
     var filmClickListener: FilmClickListener? = null
     private var cacheFilmService: CacheFilmService =
         CacheFilmServiceImpl(App.getCacheDao(), App.getFavoriteFilmDao())
+    private val imageSourcePath: String = BuildConfig.IMAGE_SOURCE_PATH
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -56,8 +58,7 @@ class ActualFilmsAdapter : RecyclerView.Adapter<ActualFilmsAdapter.ActualFilmsHo
         fun bind(film: FilmObject, field: FilmCardMaketBinding) = with(field) {
             Picasso
                 .get()
-                .load("https://image.tmdb.org/t/p/w500/" + film.posterPath)
-                //.fit()
+                .load(imageSourcePath + film.posterPath)
                 .resizeDimen(R.dimen.film_cover_width, R.dimen.film_cover_height)
                 .centerInside()
                 .into(cover)

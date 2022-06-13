@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmslibrary.BuildConfig
 import com.example.filmslibrary.R
 import com.example.filmslibrary.databinding.FragmentActualBinding
 import com.example.filmslibrary.model.data.AppState
@@ -22,6 +23,7 @@ class ActualFragment : Fragment() {
     private val filmsViewModel: FilmsViewModel by viewModel()
     private var recyclerView: RecyclerView? = null
     private var adapter: ActualFilmsAdapter? = null
+    private val apiKey: String = BuildConfig.API_KEY
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +58,7 @@ class ActualFragment : Fragment() {
             renderData(it)
         }
 
-        filmsViewModel.getFilms("0bca8a77230116b8ac43cd3b8634aca9", "ru-RU")
+        filmsViewModel.getFilms(apiKey, "ru-RU")
     }
 
     private fun initRecyclerView() {
