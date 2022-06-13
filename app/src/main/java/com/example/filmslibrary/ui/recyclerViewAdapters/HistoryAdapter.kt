@@ -1,9 +1,11 @@
 package com.example.filmslibrary.ui.recyclerViewAdapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.filmslibrary.BuildConfig
 import com.example.filmslibrary.R
 import com.example.filmslibrary.databinding.HistoryCardMaketBinding
 import com.example.filmslibrary.model.mapper.FilmDtoMapper
@@ -14,8 +16,10 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
 
     var historyClickListener: HistoryClickListener? = null
     private var historyData: List<HistoryEntity> = listOf()
+    private val imageSourcePath: String = BuildConfig.IMAGE_SOURCE_PATH
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setHistory(historyList: List<HistoryEntity>) {
         historyData = historyList
         notifyDataSetChanged()
@@ -45,11 +49,11 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
             Picasso
                 .get()
                 .load(
-                    "https://image.tmdb.org/t/p/w500/" + FilmDtoMapper.historyEntityToFilmObject(
+                    imageSourcePath + FilmDtoMapper.historyEntityToFilmObject(
                         singleHistoryFilm
                     ).posterPath
                 )
-                .resizeDimen(R.dimen.film_cover_width,R.dimen.film_cover_height)
+                .resizeDimen(R.dimen.film_cover_width, R.dimen.film_cover_height)
                 .centerInside()
                 .into(historyFilmImage)
 
@@ -74,6 +78,4 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
     fun removeListener() {
         historyClickListener = null
     }
-
-
 }

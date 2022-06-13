@@ -1,6 +1,7 @@
 package com.example.filmslibrary.ui.viewModel
 
 import androidx.lifecycle.MutableLiveData
+import com.example.filmslibrary.BuildConfig
 import com.example.filmslibrary.application.App
 import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.model.repository.FilmObject
@@ -20,6 +21,7 @@ class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInt
     private var favoriteLiveData: MutableLiveData<AppState> = MutableLiveData()
     private var favoriteFilmService: FavoriteService = FavoriteService(favoriteFilmDao)
     private var adapter: FavoriteAdapter? = null
+    private val apiKey:String = BuildConfig.API_KEY
 
     fun getFavoriteLiveData() = favoriteLiveData
 
@@ -41,7 +43,7 @@ class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInt
         for (id in moviesIdList) {
             val movie: FilmObject = filmsRepositoryInterface.getSingleFilmFromInternetAsync(
                 id.id,
-                "0bca8a77230116b8ac43cd3b8634aca9",
+                apiKey,
                 "ru-RU"
             )
             list.add(movie)
