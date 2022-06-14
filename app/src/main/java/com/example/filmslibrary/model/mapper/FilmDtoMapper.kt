@@ -2,7 +2,6 @@ package com.example.filmslibrary.model.mapper
 
 import com.example.filmslibrary.application.App
 import com.example.filmslibrary.model.dto.FilmDto
-import com.example.filmslibrary.model.dto.HistoryDto
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.model.repository.FilmsRepository
 import com.example.filmslibrary.room.entity.CacheFilmEntity
@@ -11,7 +10,6 @@ import com.example.filmslibrary.room.entity.HistoryEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.internal.notify
 
 class FilmDtoMapper {
 

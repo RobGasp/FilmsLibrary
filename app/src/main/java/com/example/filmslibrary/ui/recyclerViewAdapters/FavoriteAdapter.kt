@@ -29,9 +29,9 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>(),
         notifyDataSetChanged()
     }
 
-    fun setFilmsRepositoryInterface(filmsRepositoryInt: FilmsRepositoryInterface<FilmsList, FilmObject>) {
-        filmsRepositoryInterface = filmsRepositoryInt
-    }
+//    fun setFilmsRepositoryInterface(filmsRepositoryInt: FilmsRepositoryInterface<FilmsList, FilmObject>) {
+//        filmsRepositoryInterface = filmsRepositoryInt
+//    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteHolder {
