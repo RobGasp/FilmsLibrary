@@ -26,11 +26,7 @@
             android:id="@+id/action_favourite_fragment_to_detailsPage_fragment"
             app:destination="@id/detailsPage_fragment" />
     </fragment>
-    <fragment
-        android:id="@+id/cinemas_fragment"
-        android:name="com.example.filmslibrary.ui.view.CinemasFragment"
-        android:label="@string/cinemas"
-        tools:layout="@layout/fragment_cinemas" />
+
     <fragment
         android:id="@+id/settings_fragment"
         android:name="com.example.filmslibrary.ui.view.SettingsFragment"

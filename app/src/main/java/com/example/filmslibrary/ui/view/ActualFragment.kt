@@ -1,5 +1,7 @@
 package com.example.filmslibrary.ui.view
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -97,9 +99,18 @@ class ActualFragment : Fragment() {
         val gotoHistoryFragment =
             ActualFragmentDirections.actionActualFragmentToHistoryPageFragment()
         when (item.itemId) {
+            R.id.cinemas -> findCinema()
             R.id.history -> view?.findNavController()?.navigate(gotoHistoryFragment)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun findCinema(){
+        // поиск кинотеатра поблизости
+        val gmmIntentUri = Uri.parse("geo:0,0?q=кинотеатр")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)
     }
 
     private fun filmClicked(film: FilmObject) {

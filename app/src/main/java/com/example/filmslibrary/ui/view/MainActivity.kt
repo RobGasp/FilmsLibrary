@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.actual_fragment,
                 R.id.favourite_fragment,
-                R.id.cinemas_fragment,
                 R.id.settings_fragment
             )
         )
