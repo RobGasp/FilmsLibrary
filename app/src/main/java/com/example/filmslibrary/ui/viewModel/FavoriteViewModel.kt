@@ -3,6 +3,7 @@ package com.example.filmslibrary.ui.viewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.filmslibrary.BuildConfig
 import com.example.filmslibrary.application.App
+import com.example.filmslibrary.model.FirebaseDb.FirebaseDbManager
 import com.example.filmslibrary.model.data.AppState
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.model.repository.FilmsList
@@ -14,7 +15,7 @@ import com.example.filmslibrary.ui.recyclerViewAdapters.FavoriteAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInterface<FilmsList, FilmObject>) :
+class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInterface<FilmsList, FilmObject>, private val firebaseDbManager: FirebaseDbManager) :
     BaseViewModel<AppState>() {
 
     private var favoriteFilmDao: FavoriteFilmDao = App.getFavoriteFilmDao()
@@ -35,6 +36,7 @@ class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInt
             favoriteLiveData.postValue(
                 AppState.FavoriteSuccess(getMovieFromServer(moviesIdList))
             )
+            saveToFirestoreDB(moviesIdList)
         }
     }
 
@@ -49,6 +51,10 @@ class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInt
             list.add(movie)
         }
         return list
+    }
+
+    private fun saveToFirestoreDB(moviesIdList: List<FavoriteFilmEntity>){
+        firebaseDbManager.postToDb(moviesIdList)
     }
 
     override fun handleError(throwable: Throwable) {

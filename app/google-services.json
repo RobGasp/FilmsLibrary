@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "118435928251",
+    "firebase_url": "https://filmslibrary-a9105-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "filmslibrary-a9105",
     "storage_bucket": "filmslibrary-a9105.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "118435928251-7lfkrbesuc5rr0umlp73kb4015lqd1j2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.filmslibrary",
+            "certificate_hash": "2ddf97aa9775053bed084feb34ff04d3e3db53ec"
+          }
+        },
         {
           "client_id": "118435928251-66t0bbkgla7e8c8pqsradbnk0964b7mb.apps.googleusercontent.com",
           "client_type": 3
