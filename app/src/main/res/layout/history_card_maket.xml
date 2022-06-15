@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/history_film_image"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text = "Фильм"/>
 
     <TextView
