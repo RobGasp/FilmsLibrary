@@ -1,6 +1,7 @@
 package com.example.filmslibrary.ui.view
 
 import android.annotation.SuppressLint
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.widget.Toast.LENGTH_SHORT
 import com.example.filmslibrary.R
 import com.example.filmslibrary.application.App
 import com.example.filmslibrary.databinding.FragmentDetailsPageBinding
+import com.example.filmslibrary.model.firebaseDb.FirebaseDbManager
 import com.example.filmslibrary.model.mapper.FilmDtoMapper
 import com.example.filmslibrary.model.repository.FilmObject
 import com.example.filmslibrary.room.entity.FavoriteFilmEntity
@@ -23,6 +25,8 @@ class DetailsPageFragment : Fragment() {
     private var _binding: FragmentDetailsPageBinding? = null
     private val binding get() = _binding!!
 
+
+    private var firebaseDbManager = FirebaseDbManager()
     private var favoriteService: FavoriteService = FavoriteService(App.getFavoriteFilmDao())
     private var isFavorite: Boolean? = null
     private var isFav: Boolean? = null
@@ -68,6 +72,13 @@ class DetailsPageFragment : Fragment() {
 
         favoriteFilmEntity = favoriteService.getFavoriteFilm(movie.id)
 
+
+        if (firebaseDbManager.auth.uid == null){
+            binding.like.visibility = View.GONE
+        } else{
+            binding.like.visibility = View.VISIBLE
+        }
+
         if (favoriteFilmEntity == null) {
             isFavorite = false
             like.setImageResource(R.drawable.favorite_false)
@@ -83,8 +94,11 @@ class DetailsPageFragment : Fragment() {
         like.setOnClickListener {
             if (!isFav!!) {
                 favoriteService.insertFavoriteFilm(FilmDtoMapper.filmObjectToFavoriteEntity(movie))
+
+
                 like.setImageResource(R.drawable.ic_favorite_true)
                 favoriteFilmEntity = FavoriteFilmEntity(movie.id, movie.id, true)
+                firebaseDbManager.postFilmToDb(favoriteFilmEntity!!)
                 isFav = true
                 Toast.makeText(context, "${movie.title} добавлен в избранное", LENGTH_SHORT).show()
             } else {
@@ -92,6 +106,7 @@ class DetailsPageFragment : Fragment() {
                 favoriteService.deleteFavoriteFilm(FilmDtoMapper.filmObjectToFavoriteEntity(movie))
                 like.setImageResource(R.drawable.favorite_false)
                 favoriteFilmEntity = FavoriteFilmEntity(movie.id, movie.id, false)
+                firebaseDbManager.deleteFilmFromDb(favoriteFilmEntity!!)
                 isFav = false
                 Toast.makeText(context, "${movie.title} удален из избранного", LENGTH_SHORT).show()
             }

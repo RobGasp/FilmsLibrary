@@ -19,19 +19,17 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>(),
     CoroutineScope by MainScope() {
 
     var favoriteClickListener: FavoriteClickListener? = null
-    private var favoriteData: List<FilmObject> = listOf()
-    private var filmsRepositoryInterface: FilmsRepositoryInterface<FilmsList, FilmObject>? = null
+    private var favoriteData: MutableList<FilmObject> = mutableListOf()
+
     private var imageSourcePath = BuildConfig.IMAGE_SOURCE_PATH
 
     @SuppressLint("NotifyDataSetChanged")
     fun setFavorite(favoriteFilmEntity: List<FilmObject>) {
-        favoriteData = favoriteFilmEntity
+        favoriteData.clear()
+        favoriteData = favoriteFilmEntity.toMutableList()
         notifyDataSetChanged()
     }
 
-//    fun setFilmsRepositoryInterface(filmsRepositoryInt: FilmsRepositoryInterface<FilmsList, FilmObject>) {
-//        filmsRepositoryInterface = filmsRepositoryInt
-//    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteHolder {

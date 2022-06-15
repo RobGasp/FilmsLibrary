@@ -17,51 +17,44 @@ import com.example.filmslibrary.utils.favouriteFilmFirebaseToFavouriteFilmEntity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class FavoriteViewModel(private val filmsRepositoryInterface: FilmsRepositoryInterface<FilmsList, FilmObject>, private val firebaseDbManager: FirebaseDbManager) :
+class FavoriteViewModel(
+    private val filmsRepositoryInterface: FilmsRepositoryInterface<FilmsList, FilmObject>,
+    private val firebaseDbManager: FirebaseDbManager
+) :
     BaseViewModel<AppState>() {
 
     private var favoriteFilmDao: FavoriteFilmDao = App.getFavoriteFilmDao()
     private var favoriteLiveData: MutableLiveData<AppState> = MutableLiveData()
     private var favoriteFilmService: FavoriteService = FavoriteService(favoriteFilmDao)
     private var adapter: FavoriteAdapter? = null
-    private val apiKey:String = BuildConfig.API_KEY
-    private var films: List<FavoriteFilmEntity>? = listOf()
+    private val apiKey: String = BuildConfig.API_KEY
+
 
     fun getFavoriteLiveData() = favoriteLiveData
     fun getFavoriteList() {
-        firebaseDbManager.fireBaseCallback = FirebaseDbManager.FireBaseCallback {
-            films = favouriteFilmFirebaseToFavouriteFilmEntity(it)
-        }
         favoriteLiveData.value = AppState.Loading(null)
         cancelJob()
-//        adapter?.setFilmsRepositoryInterface(filmsRepositoryInterface)
-        viewModelCoroutineScope.launch(Dispatchers.IO) {
-            Log.d("TAGG", "before")
-            val auth = Firebase.auth
-            if(auth.uid != null){
 
-                firebaseDbManager.getFromDb()
-                films?.let { favoriteFilmService.addAllFavoriteFilms(it) }
-                val updatedFilmsFromDb = favoriteFilmService.getAllFavoriteFilms()
-                showFilms(updatedFilmsFromDb)
-                firebaseDbManager.postToDb(updatedFilmsFromDb)
+        val auth = Firebase.auth
+        if (auth.uid != null) {
+            firebaseDbManager.getFromDb(FirebaseDbManager.FireBaseCallback {
+                viewModelCoroutineScope.launch(Dispatchers.IO) {
+                    val result = getMovieFromServer(favouriteFilmFirebaseToFavouriteFilmEntity(it))
 
-            } else{
-                Log.d("TAGG", "falsecycle")
-                val updatedFilmsFromDb = favoriteFilmService.getAllFavoriteFilms()
-                showFilms(updatedFilmsFromDb)
-            }
-            Log.d("TAGG", "end")
+                    favoriteLiveData.postValue(
+                        AppState.FavoriteSuccess(result)
+                    )
+                }
+            })
 
         }
+
     }
 
-    private suspend fun showFilms(list: List<FavoriteFilmEntity>){
-        favoriteLiveData.postValue(
-            AppState.FavoriteSuccess(getMovieFromServer(list)))
-    }
 
     private suspend fun getMovieFromServer(moviesIdList: List<FavoriteFilmEntity>): List<FilmObject> {
         val list = mutableListOf<FilmObject>()

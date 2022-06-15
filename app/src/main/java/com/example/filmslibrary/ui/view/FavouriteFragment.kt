@@ -51,13 +51,9 @@ class FavouriteFragment() : Fragment(), FragmentContract {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
 
-        favoriteViewModel.getFavoriteLiveData().observe(viewLifecycleOwner) {
-            renderData(it)
-        }
-        favoriteViewModel.getFavoriteList()
-
         dialog = Dialog(this) {
             //листенер на закрытие окна диалога, может пригодится
+            favoriteViewModel.getFavoriteList()
         }
 
         binding.btnAuth.setOnClickListener {
@@ -77,6 +73,11 @@ class FavouriteFragment() : Fragment(), FragmentContract {
         favoriteAdapter?.favoriteClickListener = FavoriteAdapter.FavoriteClickListener { movie ->
             favoriteClicked(movie)
         }
+
+        favoriteViewModel.getFavoriteLiveData().observe(viewLifecycleOwner) {
+            renderData(it)
+        }
+        favoriteViewModel.getFavoriteList()
     }
 
     private fun renderData(appState: AppState) = with(binding) {
@@ -124,4 +125,5 @@ class FavouriteFragment() : Fragment(), FragmentContract {
             binding.btnAuth.visibility = View.GONE
         }
     }
+
 }

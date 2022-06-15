@@ -11,44 +11,46 @@ import com.google.firebase.ktx.Firebase
 
 class FirebaseDbManager {
     val db = Firebase.database.getReference("main")
-    var fireBaseCallback: FireBaseCallback? = null
-//    var list = mutableListOf<FavouriteFilmFirebase>()
     val auth = Firebase.auth
-//    private val listFilms: MutableList<FavouriteFilmFirebase>? = null
 
     fun postToDb(filmListFromLocalDB: List<FavoriteFilmEntity>) {
-        Log.d("TAG", auth.uid.toString())
         if (auth.uid != null) {
-            Log.d("TAG", "in")
             for (item in filmListFromLocalDB) {
                 db.child(auth.uid.toString()).child(item.id.toString()).child("FavoriteFilmEntity")
                     .setValue(item)
-                Log.d("TAG",item.id.toString())
             }
         }
     }
 
+    fun postFilmToDb(filmListFromLocalDB: FavoriteFilmEntity) {
+        if (auth.uid != null) {
+            db.child(auth.uid.toString()).child(filmListFromLocalDB.id.toString())
+                .child("FavoriteFilmEntity")
+                .setValue(filmListFromLocalDB)
+        }
+    }
+
+    fun deleteFilmFromDb(filmListFromLocalDB: FavoriteFilmEntity) {
+        if (auth.uid != null) {
+            db.child(auth.uid.toString()).child(filmListFromLocalDB.id.toString()).removeValue()
+        }
+    }
 
 
-    fun getFromDb() {
+    fun getFromDb(fireBaseCallback: FireBaseCallback) {
         db.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val listFilms: MutableList<FavouriteFilmFirebase>? = mutableListOf()
+                val listFilms: MutableList<FavouriteFilmFirebase> = mutableListOf()
                 val result = snapshot.child(auth.uid.toString())
                 for (item in result.children) {
                     val film =
                         item.child("FavoriteFilmEntity").getValue(FavouriteFilmFirebase::class.java)
-                    Log.d("TAGG", film.toString())
-                   if (film != null) {
-                       listFilms?.add(film)
-                       Log.d("TAGG", film.toString() + "added")
-                   }
+
+                    if (film != null) {
+                        listFilms.add(film)
+                    }
                 }
-                Log.d("TAGG", "list" + listFilms.toString())
-                if (listFilms != null) {
-                    fireBaseCallback?.getData(listFilms)
-                    Log.d("TAGG", listFilms.toString())
-                }
+                fireBaseCallback.getData(listFilms)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -59,8 +61,11 @@ class FirebaseDbManager {
     }
 
 
+    fun interface FireBaseCallback {
+        fun getData(list: MutableList<FavouriteFilmFirebase>)
+    }
 
-   fun interface FireBaseCallback {
+    fun interface DeleteListener {
         fun getData(list: MutableList<FavouriteFilmFirebase>)
     }
 }
