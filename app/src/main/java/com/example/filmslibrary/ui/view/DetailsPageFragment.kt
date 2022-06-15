@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import com.example.filmslibrary.BuildConfig
 import com.example.filmslibrary.R
 import com.example.filmslibrary.application.App
 import com.example.filmslibrary.databinding.FragmentDetailsPageBinding
@@ -31,6 +32,8 @@ class DetailsPageFragment : Fragment() {
     private var isFav: Boolean? = null
     private var favoriteFilmEntity: FavoriteFilmEntity? = null
     private lateinit var movie: FilmObject
+    private val imageSourcePath: String = BuildConfig.IMAGE_SOURCE_PATH
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +57,8 @@ class DetailsPageFragment : Fragment() {
 
         Picasso
             .get()
-            .load("https://image.tmdb.org/t/p/w500/" + movie.posterPath)
-            .resizeDimen(R.dimen.image_description_size,R.dimen.image_description_size)
+            .load(imageSourcePath + movie.posterPath)
+            .resizeDimen(R.dimen.image_description_size, R.dimen.image_description_size)
             .centerInside()
             .into(cover)
 
@@ -72,14 +75,14 @@ class DetailsPageFragment : Fragment() {
         firebaseDbManager.getFromDb {
             val result: List<FavoriteFilmEntity> = favouriteFilmFirebaseToFavouriteFilmEntity(it)
             var counter = 0
-            for (item in result){
-                if (item.id == movie.id){
-                    counter ++
+            for (item in result) {
+                if (item.id == movie.id) {
+                    counter++
                 }
-                if(counter > 0){
+                if (counter > 0) {
                     isFavorite = true
                     like.setImageResource(R.drawable.ic_favorite_true)
-                } else{
+                } else {
                     isFavorite = false
                     like.setImageResource(R.drawable.favorite_false)
                 }
@@ -87,9 +90,9 @@ class DetailsPageFragment : Fragment() {
             clickToLike(isFavorite!!)
         }
 
-        if (firebaseDbManager.auth.uid == null){
+        if (firebaseDbManager.auth.uid == null) {
             binding.like.visibility = View.GONE
-        } else{
+        } else {
             binding.like.visibility = View.VISIBLE
         }
 
