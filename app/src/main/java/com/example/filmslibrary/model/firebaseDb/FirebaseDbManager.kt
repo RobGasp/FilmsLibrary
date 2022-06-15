@@ -1,6 +1,5 @@
 package com.example.filmslibrary.model.firebaseDb
 
-import android.util.Log
 import com.example.filmslibrary.room.entity.FavoriteFilmEntity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
