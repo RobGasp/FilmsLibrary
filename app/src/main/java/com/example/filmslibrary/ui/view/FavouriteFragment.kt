@@ -84,12 +84,19 @@ class FavouriteFragment() : Fragment(), FragmentContract {
         when (appState) {
             is AppState.FavoriteSuccess -> {
                 loadingLayout.visibility = View.GONE
-                favoriteAdapter?.setFavorite(appState.favoriteData)
+                if (appState.favoriteData.isEmpty()){
+                    binding.emptyPage.visibility = View.VISIBLE
+                }else{
+                    binding.emptyPage.visibility = View.GONE
+                    favoriteAdapter?.setFavorite(appState.favoriteData)
+                }
             }
             is AppState.Loading -> {
+                binding.emptyPage.visibility = View.GONE
                 loadingLayout.visibility = View.VISIBLE
             }
             is AppState.Error -> {
+                binding.emptyPage.visibility = View.GONE
                 loadingLayout.visibility = View.GONE
                 Toast.makeText(requireActivity(),"Unknown Error",Toast.LENGTH_LONG).show()
             }

@@ -44,7 +44,6 @@ class FavoriteViewModel(
             firebaseDbManager.getFromDb(FirebaseDbManager.FireBaseCallback {
                 viewModelCoroutineScope.launch(Dispatchers.IO) {
                     val result = getMovieFromServer(favouriteFilmFirebaseToFavouriteFilmEntity(it))
-
                     favoriteLiveData.postValue(
                         AppState.FavoriteSuccess(result)
                     )
