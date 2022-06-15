@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,13 +51,9 @@ class FavouriteFragment() : Fragment(), FragmentContract {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
 
-        favoriteViewModel.getFavoriteLiveData().observe(viewLifecycleOwner) {
-            renderData(it)
-        }
-        favoriteViewModel.getFavoriteList()
-
         dialog = Dialog(this) {
             //листенер на закрытие окна диалога, может пригодится
+            favoriteViewModel.getFavoriteList()
         }
 
         binding.btnAuth.setOnClickListener {
@@ -76,18 +73,33 @@ class FavouriteFragment() : Fragment(), FragmentContract {
         favoriteAdapter?.favoriteClickListener = FavoriteAdapter.FavoriteClickListener { movie ->
             favoriteClicked(movie)
         }
+
+        favoriteViewModel.getFavoriteLiveData().observe(viewLifecycleOwner) {
+            renderData(it)
+        }
+        favoriteViewModel.getFavoriteList()
     }
 
     private fun renderData(appState: AppState) = with(binding) {
         when (appState) {
             is AppState.FavoriteSuccess -> {
                 loadingLayout.visibility = View.GONE
-                favoriteAdapter?.setFavorite(appState.favoriteData)
+                if (appState.favoriteData.isEmpty()){
+                    binding.emptyPage.visibility = View.VISIBLE
+                }else{
+                    binding.emptyPage.visibility = View.GONE
+                    favoriteAdapter?.setFavorite(appState.favoriteData)
+                }
             }
             is AppState.Loading -> {
+                binding.emptyPage.visibility = View.GONE
                 loadingLayout.visibility = View.VISIBLE
             }
-            is AppState.Error -> {}
+            is AppState.Error -> {
+                binding.emptyPage.visibility = View.GONE
+                loadingLayout.visibility = View.GONE
+                Toast.makeText(requireActivity(),"Unknown Error",Toast.LENGTH_LONG).show()
+            }
             else -> {}
         }
     }
@@ -120,4 +132,5 @@ class FavouriteFragment() : Fragment(), FragmentContract {
             binding.btnAuth.visibility = View.GONE
         }
     }
+
 }

@@ -17,6 +17,9 @@ class FavoriteService (private val favoriteFilmDao: FavoriteFilmDao) {
     fun deleteFavoriteFilm(favoriteFilmEntity: FavoriteFilmEntity){
         favoriteFilmDao.delete(favoriteFilmEntity)
     }
+    fun addAllFavoriteFilms(films: List<FavoriteFilmEntity>){
+        favoriteFilmDao.insertAll(films)
+    }
 
     fun getIsAdult(filmObject: FilmObject):FavoriteFilmEntity{
         return favoriteFilmDao.getFavoriteFilmByFilmId(filmObject.id)

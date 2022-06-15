@@ -2,6 +2,8 @@ package com.example.filmslibrary.room.repository
 
 import androidx.room.*
 import com.example.filmslibrary.room.entity.FavoriteFilmEntity
+import com.example.filmslibrary.room.entity.HistoryEntity
+
 
 @Dao
 interface FavoriteFilmDao {
@@ -17,8 +19,9 @@ interface FavoriteFilmDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(entity: FavoriteFilmEntity)
 
-    @Update
-    fun update(entity: FavoriteFilmEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(films: List<FavoriteFilmEntity>)
+
 
     @Delete
     fun delete(entity: FavoriteFilmEntity)

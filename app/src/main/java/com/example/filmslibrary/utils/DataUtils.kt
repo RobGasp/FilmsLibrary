@@ -1,5 +1,15 @@
 package com.example.filmslibrary.utils
 
-import com.example.filmslibrary.model.repository.FilmObject
+import com.example.filmslibrary.model.firebaseDb.FavouriteFilmFirebase
 import com.example.filmslibrary.room.entity.FavoriteFilmEntity
 
+
+fun favouriteFilmFirebaseToFavouriteFilmEntity(list: MutableList<FavouriteFilmFirebase>): List<FavoriteFilmEntity> {
+    return list.map { item ->
+        FavoriteFilmEntity(
+            item.id,
+            item.cacheFilmId,
+            item.isFavorite,
+        )
+    }
+}

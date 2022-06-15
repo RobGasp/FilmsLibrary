@@ -29,7 +29,7 @@
     <string name="settings">Настройки</string>
     <string name="not_registred">Войдите или зарегистируйтесь</string>
     <string name="Sign_In">Вход</string>
-    <string name="sign_in_error">Неудалось войти</string>
+    <string name="sign_in_error">Не удалось войти</string>
     <string name="Enter">Авторизация</string>
     <string name="Sign_out">Выход</string>
     <string name="password_hint_repeat">Повторите пароль</string>
@@ -52,6 +52,7 @@
     <string name="dialog_address_ok">Ok</string>
     <string name="enter_button_text">Войти</string>
     <string name="registry_text">Регистрация</string>
+    <string name="empty_favourites">Добавьте фильмы в избранное</string>
 
 
 </resources>
